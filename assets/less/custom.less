@@ -352,6 +352,10 @@ a.navbar-brand {
 
     .widget {
         margin-bottom: 10px;
+
+        &:last-child {
+            margin-top: 60px;
+        }
     }
 
     .menu-menu-container,
@@ -583,7 +587,9 @@ a.navbar-brand {
 
                 &:nth-child(4n) {
                     @media @view-md, @view-lg {
-                        padding-right: 0 !important;
+                        a.thumb-bg {
+                            padding-right: 0 !important;
+                        }
                     }
                 }
 
@@ -598,16 +604,7 @@ a.navbar-brand {
                 }*/
 
                 .thumb-bg {
-                    width: 100%;
-                    height: 100%;
-                    float: left;
                     display: block;
-                    position: relative;
-                    overflow: hidden;
-
-                    @media @view-md, @view-lg {
-                        background-color: @tile-bg;
-                    }
                 }
 
                 .thumb-caption {
@@ -629,17 +626,6 @@ a.navbar-brand {
 
                     @media @view-xxs, @view-xs, @view-sm {
                         width: 100%;
-                    }
-                    @media @view-md, @view-lg {
-                        min-height: 100%;
-                        position:absolute;
-                        top: 50%;
-                        left: 50%;
-                        -moz-transform: translate(-50%, -50%);
-                        -webkit-transform: translate(-50%, -50%);
-                        -o-transform: translate(-50%, -50%);
-                        -ms-transform: translate(-50%, -50%);
-                        transform: translate(-50%, -50%);
                     }
                 }
 
@@ -718,7 +704,6 @@ a.navbar-brand {
                 height: 410px;
                 display: table-cell;
                 vertical-align: middle;
-                /*height: inherit;*/
 
                 @media @view-sm {
                     height: 650px;
@@ -739,10 +724,6 @@ a.navbar-brand {
                 a.advance-link {
                     height: inherit;
                     width: inherit;
-                    /*height: auto;
-                    line-height: 0px;
-                    display: block;
-                    text-align: center;*/
                     outline: 0;
 
                     &:hover,
@@ -769,11 +750,9 @@ a.navbar-brand {
 
 .footer {
     bottom: 0;
-    /*width: 100%;*/
     float: left;
     position: absolute;
     display: block;
-    /*height: 32px;*/
 
     p {
         margin: 10px 0;
