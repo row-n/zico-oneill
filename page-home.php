@@ -24,30 +24,22 @@ get_header(); ?>
           $content = $page->post_content;
           $thumbnail = get_the_post_thumbnail( $page->ID );
 
-          $images = $page->get_children( array(
-              'post_parent' => $post->ID,
-              'post_type' => 'attachment',
-              'post_mime_type' => 'image',
-              'orderby' => 'menu_order',
-              'order' => 'ASC',
-              'numberposts' => 999
-          ));
-          if ( $images ) {
-              $total_images = count( $images );
-              echo $total_images;
+          $galleries = get_post_galleries_images( $page );
+
+          foreach( $galleries as $gallery ) {
+
+            if ( $thumbnail ) { ?>
+              <div class="col-md-4">
+                <a href="<?php echo get_page_link( $page->ID ); ?>">
+                  <?php echo $thumbnail ?>
+                  <p><strong><?php echo $page->post_title; ?></strong></p>
+                  <p>Images (<?php echo count($gallery) ?>)</p>
+                </a>
+              </div>
+            <?php }
           }
-
-          // echo '<pre>'.print_r($page).'</pre>';
-
-          if ( $thumbnail ) { ?>
-          <div class="col-md-4">
-            <a href="<?php echo get_page_link( $page->ID ); ?>">
-              <?php echo $thumbnail ?>
-              <p><strong><?php echo $page->post_title; ?></strong></p>
-            </a>
-          </div>
-        <?php }
-      } ?>
+        }
+      ?>
       </div>
 
     <?php endwhile; // end of the loop. ?>
