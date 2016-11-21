@@ -15,8 +15,6 @@ get_header(); ?>
   <main id="main" class="site-main" role="main">
     <?php while ( have_posts() ) : the_post(); ?>
 
-      <?php get_template_part( 'content', 'page' ); ?>
-
       <div class="gallery-listing">
       <?php
         $mypages = get_pages( array( 'child_of' => $post->ID, 'sort_column' => 'post_date', 'sort_order' => 'menu_order' ) );
@@ -36,7 +34,7 @@ get_header(); ?>
                 <div class="thumb-heading">
                   <a href="<?php echo get_page_link( $page->ID ); ?>">
                     <p><strong><?php echo $page->post_title; ?></strong></p>
-                    <p>images <?php echo count($gallery) ?></p>
+                    <p class="gallery-list-small">images <?php echo count($gallery) ?></p>
                   </a>
                 </div>
               </div>
@@ -45,6 +43,8 @@ get_header(); ?>
         }
       ?>
       </div>
+
+      <?php get_template_part( 'content', 'page' ); ?>
 
     <?php endwhile; // end of the loop. ?>
 

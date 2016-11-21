@@ -29,11 +29,6 @@
 
 <?php wp_head(); ?>
 
-<script>
-    var windowHeight = $w.height() - 135;
-    $('.slideshow-container, .thumbnail-container, .loader, .aside').css({'height': windowHeight});
-</script>
-
 </head>
 
 <body <?php body_class(); ?>>
