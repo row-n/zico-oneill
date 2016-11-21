@@ -504,6 +504,8 @@ a.navbar-brand {
 
 .gallery-listing {
     .make-row(20px);
+    margin-left: auto;
+    margin-right: auto;
 
     .gallery-list-item {
         .make-xs-column(12; 20px);
@@ -760,6 +762,10 @@ a.navbar-brand {
 .footer-menu {
     position: absolute;
     bottom: 60px;
+
+    @media @view-xxs, @view-xs, @view-sm {
+        display: none;
+    }
 
     .menu-footer-menu-container {
 

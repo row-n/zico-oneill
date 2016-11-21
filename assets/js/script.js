@@ -32,7 +32,7 @@
     $body.replaceImages();
 
     if (windowheight) {
-      $('.slideshow-container, .thumbnail-container, .loader, .aside').css({'height': windowheight});
+      $('.slideshow-container, .thumbnail-container, .loader').css({'height': windowheight});
     }
 
     if ($w.innerWidth() <= altbreakpoint) {
