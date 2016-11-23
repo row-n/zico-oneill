@@ -265,6 +265,7 @@ a.navbar-brand {
 
 .navbar {
     .clearfix();
+    margin-bottom: 15px;
 
     @media @view-xxs, @view-xs, @view-sm {
         margin-bottom: 20px;
@@ -323,7 +324,7 @@ a.navbar-brand {
 
 .main-container {
     width: 100%;
-    padding: 45px 45px 0;
+    padding: 0 45px;
     float: left;
 
     @media @view-xxs, @view-xs {
@@ -336,9 +337,11 @@ a.navbar-brand {
 .aside {
     .make-md-column(3);
     max-width: 300px;
+    height: 100%;
 
     padding-left: 0;
-    margin-top: 15px;
+    padding-top: 45px;
+    position: fixed;
 
     @media @view-sm {
         float: left;
@@ -406,7 +409,8 @@ a.navbar-brand {
     }
 
     @media @view-md, @view-lg {
-        margin-top: -25px;
+        float: right;
+        padding-top: 45px;
     }
 
     .entry-footer {
@@ -760,7 +764,7 @@ a.navbar-brand {
 // Footer
 
 .footer-menu {
-    position: absolute;
+    position: fixed;
     bottom: 60px;
 
     @media @view-xxs, @view-xs, @view-sm {
@@ -790,7 +794,7 @@ a.navbar-brand {
 .footer {
     bottom: 0;
     float: left;
-    position: absolute;
+    position: fixed;
     display: block;
 
     p {

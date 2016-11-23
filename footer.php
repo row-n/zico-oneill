@@ -8,17 +8,6 @@
  */
 ?>
 
-
-      <div class="footer-menu">
-        <?php if ( ! dynamic_sidebar( 'sidebar-2' ) ) : ?>
-
-        <?php endif; // end sidebar widget area ?>
-      </div>
-
-      <footer class="footer text-left small">
-          <p>&copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?></p>
-      </footer>
-
     </div> <!-- /main-container -->
 
     <?php wp_footer(); ?>
