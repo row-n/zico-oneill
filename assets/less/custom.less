@@ -178,9 +178,9 @@ a.navbar-brand {
     background: none;
     margin: 0;
     padding: 0;
-    width: 40px;
-    height: 40px;
-    margin: -10px 0;
+    width: 30px;
+    height: 30px;
+    margin: -5px 0;
     font-size: 0;
     text-indent: -9999px;
     appearance: none;
@@ -205,8 +205,8 @@ a.navbar-brand {
     > .icon-bar {
         display: block;
         position: absolute;
-        left: 8px;
-        right: 8px;
+        left: 6px;
+        right: 0px;
         height: 2px;
         background: none;
 
@@ -239,8 +239,7 @@ a.navbar-brand {
     &.collapsed {
 
         > .icon-bar {
-            top: 19px;
-            bottom: 19px;
+            top: 14px;
             background: @gray-dark;
             transition: background 0s 0.3s;
 
@@ -324,11 +323,18 @@ a.navbar-brand {
 
 .main-container {
     width: 100%;
-    padding: 0 45px;
+    padding-left: 45px;
+    padding-right: 45px;
     float: left;
 
-    @media @view-xxs, @view-xs {
-        padding: 20px;
+    @media @view-xxs {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    @media @view-xs {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
@@ -336,20 +342,20 @@ a.navbar-brand {
 
 .aside {
     .make-md-column(3);
-    max-width: 300px;
-    height: 100%;
-
-    padding-left: 0;
     padding-top: 45px;
-    position: fixed;
 
-    @media @view-sm {
-        float: left;
+    @media @view-md, @view-lg {
+        position: fixed;
+        max-width: 300px;
         width: 25%;
+        height: 100%;
+        padding-left: 0;
     }
 
-    @media @view-xxs, @view-xs, @view-sm {
-        display: none;
+    .widget-area {
+        @media @view-xxs, @view-xs, @view-sm {
+            display: none;
+        }
     }
 
     .widget {
@@ -401,16 +407,15 @@ a.navbar-brand {
 .site-main {
     .make-md-column(9);
     .clearfix();
+    float: left;
 
     @media @view-xxs, @view-xs, @view-sm {
         width: 100%;
-        padding: 0;
-        float: left;
     }
 
     @media @view-md, @view-lg {
-        float: right;
-        padding-top: 45px;
+        padding-top: 50px;
+        margin-left: 25%;
     }
 
     .entry-footer {
@@ -421,7 +426,10 @@ a.navbar-brand {
 .content-main {
     max-width: 768px;
     font-size: 12px;
-    margin-top: 15px;
+
+    @media @view-md, @view-lg {
+        margin-top: 40px;
+    }
 
     table {
         border: none;
@@ -508,8 +516,11 @@ a.navbar-brand {
 
 .gallery-listing {
     .make-row(20px);
-    margin-left: auto;
-    margin-right: auto;
+
+    @media @view-md, @view-lg {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     .gallery-list-item {
         .make-xs-column(12; 20px);
@@ -764,7 +775,7 @@ a.navbar-brand {
 // Footer
 
 .footer-menu {
-    position: fixed;
+    position: absolute;
     bottom: 60px;
 
     @media @view-xxs, @view-xs, @view-sm {
