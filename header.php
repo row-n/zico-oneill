@@ -29,11 +29,6 @@
 
 <?php wp_head(); ?>
 
-<script>
-    var windowHeight = $w.height() - 135;
-    $('.slideshow-container, .thumbnail-container, .loader, .aside').css({'height': windowHeight});
-</script>
-
 </head>
 
 <body <?php body_class(); ?>>
@@ -43,20 +38,3 @@
     </div>
 
     <div class="main-container">
-
-        <nav class="navbar" role="navigation">
-
-            <a class="navbar-brand" href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a>
-
-            <!-- Brand and toggle get grouped for better mobile display -->
-
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <!-- <span class="icon-bar"></span>
-                    <span class="icon-bar"></span> -->
-                </button>
-            </div>
-
-        </nav>
