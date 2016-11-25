@@ -56,6 +56,6 @@
 
 	</div><!-- #secondary -->
 
-	<footer class="footer text-left small">
+	<footer class="footer text-left small hidden-xs hidden-sm">
 			<p>&copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?></p>
 	</footer>

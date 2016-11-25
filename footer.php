@@ -8,6 +8,10 @@
  */
 ?>
 
+      <footer class="footer text-left small visible-xs visible-sm">
+          <p>&copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?></p>
+      </footer>
+
     </div> <!-- /main-container -->
 
     <?php wp_footer(); ?>

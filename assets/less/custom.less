@@ -805,8 +805,16 @@ a.navbar-brand {
 .footer {
     bottom: 0;
     float: left;
-    position: fixed;
+    position: absolute;
     display: block;
+
+    @media @view-xxs, @view-xs, @view-sm {
+        padding: 0 15px;
+    }
+
+    @media @view-md, @view-lg {
+        position: fixed;
+    }
 
     p {
         margin: 10px 0;
