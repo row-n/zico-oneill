@@ -301,6 +301,10 @@
 
     $body.replaceImages();
 
+    if (windowheight) {
+      $('.slideshow-container, .thumbnail-container, .loader').css({'height': windowheight});
+    }
+
     if ($w.innerWidth() <= altbreakpoint) {
       $('.thumbnail-container').show();
       $('.slideshow-container').hide();

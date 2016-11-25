@@ -8,7 +8,7 @@
  */
 ?>
 
-      <footer class="footer text-left small">
+      <footer class="footer text-left small visible-xs visible-sm">
           <p>&copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?></p>
       </footer>
 
