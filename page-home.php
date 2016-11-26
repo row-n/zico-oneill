@@ -17,7 +17,7 @@ get_header(); ?>
 
       <div class="gallery-listing">
       <?php
-        $mypages = get_pages( array( 'child_of' => $post->ID, 'sort_column' => 'post_date', 'sort_order' => 'menu_order' ) );
+        $mypages = get_pages( array( 'child_of' => $post->ID, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
         foreach( $mypages as $page ) {
           $content = $page->post_content;
           $thumbnail = get_the_post_thumbnail( $page->ID );
