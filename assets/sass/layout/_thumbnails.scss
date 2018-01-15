@@ -1,0 +1,64 @@
+.thumbnail-container {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thumbs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.thumb-item {
+  list-style: none;
+
+  .thumb {
+    display: block;
+    height: auto;
+    margin: 0;
+    opacity: .8;
+    padding: 0;
+    transition: all .4s ease;
+
+    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+
+    p {
+      opacity: 1;
+    }
+  }
+
+  .thumb-caption {
+    color: $gray-light;
+    display: block;
+    font-size: 12px;
+
+    margin: 2px 0;
+    text-align: left;
+    width: 100%;
+
+    @media #{$view-md}, #{$view-lg} {
+      display: none;
+    }
+  }
+
+  img {
+    display: block;
+    min-width: 100%;
+
+    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+      width: 100%;
+    }
+  }
+}

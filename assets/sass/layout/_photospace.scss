@@ -1,0 +1,149 @@
+.photospace {
+  position: relative;
+  text-align: center;
+
+  > .active {
+    animation: fade-in .5s 0s ease-in-out;
+    display: block !important;
+  }
+
+  .nav-controls {
+    a {
+      font-size: 25px;
+      height: 30px;
+      line-height: 100%;
+      width: 30px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+
+      @media #{$view-md}, #{$view-lg} {
+        &:hover {
+          background-color: $tile-bg;
+        }
+      }
+
+      &.prev {
+        color: $gray-base;
+        float: left;
+        margin-left: 10%;
+
+        @media #{$view-sm}, #{$view-md}, #{$view-lg} {
+          margin-left: 25%;
+        }
+      }
+
+      &.next {
+        color: $gray-base;
+        float: right;
+        margin-right: 10%;
+
+        @media #{$view-sm}, #{$view-md}, #{$view-lg} {
+          margin-right: 25%;
+        }
+      }
+    }
+  }
+
+  .thumbnail-container {
+    .thumbs {
+      @include make-row(20px);
+    }
+
+    .thumb-item {
+      @include make-xs-column(12, 20px);
+      @include make-sm-column(6, 20px);
+      @include make-md-column(4, 20px);
+      @include make-lg-column(3, 20px);
+    }
+  }
+
+  .slideshow-container {
+    @include clearfix();
+    clear: both;
+    display: none;
+    position: relative;
+    width: 100%;
+
+    .controls,
+    .caption-container {
+      a {
+        outline: 0;
+      }
+    }
+
+    .caption-container {
+      color: $gray-light;
+
+      @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+        font-size: 12px;
+      }
+    }
+
+    .slideshow {
+      display: table;
+      height: 100%;
+      margin: 0 auto;
+      max-height: 410px;
+      padding-bottom: 10px;
+      text-align: center;
+      width: 100%;
+
+      @media #{$view-sm} {
+        max-height: 650px;
+      }
+
+      @media #{$view-md}, #{$view-lg} {
+        height: auto;
+        max-height: 100%;
+      }
+
+      .image-wrapper {
+        display: table-cell;
+        height: 410px;
+        vertical-align: middle;
+        width: auto;
+
+        @media #{$view-sm} {
+          height: 650px;
+        }
+
+        @media #{$view-md}, #{$view-lg} {
+          font-size: 0;
+          height: inherit;
+          left: 0;
+          letter-spacing: -1px;
+          line-height: 0;
+          position: relative;
+          top: 0;
+          white-space: nowrap;
+          width: inherit;
+        }
+
+        .advance-link {
+          height: inherit;
+          outline: 0;
+          width: inherit;
+
+          &:hover,
+          &:active,
+          &:visited {
+            text-decoration: none;
+          }
+        }
+
+        img {
+          height: auto;
+          line-height: 0;
+          max-height: 100%;
+          max-width: 100%;
+          vertical-align: top;
+          width: auto;
+        }
+      }
+    }
+  }
+}

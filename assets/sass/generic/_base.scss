@@ -1,0 +1,28 @@
+body {
+  background: $body-bg;
+  display: block;
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue Medium', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-size: $font-size-base;
+  margin: 0 auto;
+  min-height: 100%;
+  padding-bottom: 20px;
+  position: absolute;
+  width: 100%;
+}
+
+.main-container {
+  float: left;
+  padding-left: 45px;
+  padding-right: 45px;
+  width: 100%;
+
+  @media #{$view-xxs} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @media #{$view-xs} {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

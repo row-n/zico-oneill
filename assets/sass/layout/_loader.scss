@@ -1,0 +1,41 @@
+.loader {
+  bottom: 0;
+  display: block;
+  font-size: 0;
+  height: 410px;
+  left: 0;
+  letter-spacing: -1px;
+  line-height: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  white-space: nowrap;
+  width: 100%;
+
+  @media #{$view-sm} {
+    height: 650px;
+  }
+
+  @media #{$view-md}, #{$view-lg} {
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .loader-inner {
+    left: 50%;
+    margin: -30px 0 0 -30px;
+    position: absolute;
+    top: 50%;
+
+    > div {
+      animation: ball-scale 1s 0s ease-in-out infinite;
+      animation-fill-mode: both;
+      background-color: $gray-light;
+      border-radius: 100%;
+      display: inline-block;
+      height: 60px;
+      margin: 2px;
+      width: 60px;
+    }
+  }
+}

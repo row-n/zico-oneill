@@ -1,0 +1,33 @@
+.gallery-listing {
+  @include make-row(20px);
+
+  @media #{$view-md}, #{$view-lg} {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gallery-list-item {
+    @include make-xs-column(12, 20px);
+    @include make-sm-column(6, 20px);
+    @include make-md-column(4, 20px);
+    margin-bottom: 20px;
+    outline: none;
+    text-align: center;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    img {
+      margin-bottom: 10px;
+    }
+
+    strong {
+      text-transform: uppercase;
+    }
+  }
+
+  .gallery-list-small {
+    font-size: 10px;
+  }
+}
