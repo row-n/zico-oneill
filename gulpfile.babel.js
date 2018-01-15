@@ -131,5 +131,5 @@ gulp.task('build', () => {
 // Default Task
 gulp.task('default', () => {
   isProduction = false;
-  $.runSequence('clean', 'php:lint', 'styles', 'browser-sync');
+  $.runSequence('clean', 'php:lint', 'styles', 'scripts', 'browser-sync');
 });

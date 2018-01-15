@@ -22,14 +22,6 @@ if ( ! function_exists( 'zicooneill_setup' ) ) :
  */
 function zicooneill_setup() {
 
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on zicooneill, use a find and replace
-	 * to change 'zicooneill' to the name of your theme in all the template files
-	 */
-	load_theme_textdomain( 'zicooneill', get_template_directory() . '/languages' );
-
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
@@ -51,14 +43,6 @@ function zicooneill_setup() {
 	 */
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 * See http://codex.wordpress.org/Post_Formats
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link'
 	) );
 
 	// Setup the WordPress core custom background feature.
@@ -123,9 +107,6 @@ add_action( 'widgets_init', 'zicooneill_widgets_init' );
 function zicooneill_scripts() {
 	wp_enqueue_style( 'zicooneill-style', get_stylesheet_uri() );
 
-	/* Add Custom CSS */
-	wp_enqueue_style( 'custom-style', get_stylesheet_directory_uri() . '/public/css/custom.min.css' );
-
 	/* Add Bootstrap JS */
 	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/public/js/script.min.js', array('jquery'), '', true );
 
@@ -187,4 +168,3 @@ add_action( 'wp_enqueue_scripts', 'conditional_js' );
 
 // Register Custom Navigation Walker
 require_once('wp_bootstrap_navwalker.php');
-
