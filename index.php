@@ -1,39 +1,16 @@
-<?php
-/**
- * The main template file.
- *
- * @package zicooneill
- */
+<?php get_header(); ?>
+	<?php if ( have_posts() ) : ?>
 
-get_header(); ?>
+		<?php while ( have_posts() ) : the_post(); ?>
 
-	<aside class="aside">
-		<?php get_sidebar(); ?>
-	</aside>
+			<?php get_template_part( 'content', get_post_format() ); ?>
 
-	<main id="main" class="site-main" role="main">
-		<?php if ( have_posts() ) : ?>
+		<?php endwhile; ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+	<?php else : ?>
 
-				<?php
-					/* Include the Post-Format-specific template for the content.
-				 	* If you want to override this in a child theme, then include a file
-				 	* called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 	*/
-					get_template_part( 'content', get_post_format() );
-				?>
+		<?php get_template_part( 'content', 'none' ); ?>
 
-			<?php endwhile; ?>
-
-			<?php zicooneill_paging_nav(); ?>
-
-		<?php else : ?>
-
-			<?php get_template_part( 'content', 'none' ); ?>
-
-		<?php endif; ?>
-	</main><!-- #main -->
+	<?php endif; ?>
 
 <?php get_footer(); ?>

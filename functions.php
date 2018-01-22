@@ -1,170 +1,220 @@
 <?php
-/**
- * zicooneill functions and definitions
- *
- * @package zicooneill
- */
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
+/*------------------------------------*\
+  Theme Support
+\*------------------------------------*/
+
+if (!defined('ABSPATH')) exit;
+
+/*------------------------------------*\
+  Functions
+\*------------------------------------*/
+
+// Set up theme support
+function shapeSpace_setup()
+{
+  add_theme_support('menus');
+  add_theme_support('post-thumbnails');
+  add_theme_support('automatic-feed-links');
+  add_theme_support('title-tag');
 }
 
-if ( ! function_exists( 'zicooneill_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function zicooneill_setup() {
-
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'zicooneill' ),
-	) );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-	) );
-
-	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'zicooneill_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+// Blank navigation
+function main_nav()
+{
+  wp_nav_menu(
+    array(
+      'theme_location'  => 'header-menu',
+      'menu'            => 'main',
+      'container'       => false,
+      'container_class' => 'menu-{menu slug}-container',
+      'container_id'    => '',
+      'menu_class'      => 'menu',
+      'menu_id'         => '',
+      'echo'            => true,
+      'fallback_cb'     => 'wp_page_menu',
+      'before'          => '',
+      'after'           => '',
+      'link_before'     => '',
+      'link_after'      => '',
+      'items_wrap'      => '<ul class="menu__list">%3$s</ul>',
+      'depth'           => 0,
+      'walker'          => ''
+    )
+  );
 }
-endif; // zicooneill_setup
-add_action( 'after_setup_theme', 'zicooneill_setup' );
 
-$r_widget_si = 	get_template_directory() . '/widgets/social.php';
-include $r_widget_si;
+// Add class to menu items
+function nav_menu_item_class($classes, $item, $args, $depth)
+{
+  for($i = 0; $i < count($classes); $i++){
+    if ($classes[$i] == 'menu-item') {
+      $classes[$i] = 'menu__item';
+    }
 
-function wp_editor_fontsize_filter( $buttons ) {
-	array_shift( $buttons );
-	array_unshift( $buttons, 'fontsizeselect');
-	array_unshift( $buttons, 'formatselect');
-	return $buttons;
+    if ($classes[$i] == 'menu-item-has-children') {
+      $classes[$i] = 'menu__item--has-children';
+    }
+
+    if ($classes[$i] == 'current-menu-item') {
+      $classes[$i] = 'menu__item--active';
+    }
+  }
+
+  $new_classes = is_array($classes) ? array_intersect($classes, array('menu__item', 'menu__item--active', 'menu__item--has-children')) : '';
+
+  return $new_classes;
 }
-add_filter('mce_buttons_2', 'wp_editor_fontsize_filter');
 
-/**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function zicooneill_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Menu', 'zicooneill' ),
-		'id'            => 'burger-menu',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<p class="widget-title">',
-		'after_title'   => '</p>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'zicooneill' ),
-		'id'            => 'sidebar-1',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<p class="widget-title">',
-		'after_title'   => '</p>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Sidebar Footer', 'zicooneill' ),
-		'id'            => 'sidebar-2',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<p class="widget-title">',
-		'after_title'   => '</p>',
-	) );
+// Add class to menu link
+function nav_menu_link_atts($atts, $item, $args, $depth)
+{
+  $new_atts = array('class' => 'menu__link');
+  if (isset($atts['href'])) {
+    $new_atts['href'] = $atts['href'];
+  }
+
+  return $new_atts;
 }
-add_action( 'widgets_init', 'zicooneill_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-function zicooneill_scripts() {
-	wp_enqueue_style( 'zicooneill-style', get_stylesheet_uri() );
-
-	/* Add Bootstrap JS */
-	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/public/js/script.min.js', array('jquery'), '', true );
-
-	/* Add JS for specific Bootstrap JS Calls */
-	// wp_enqueue_script( 'theme-js', get_template_directory_uri() . '/public/js/theme.min.js', array('jquery', 'script-js'), '', true );
-
-	//wp_enqueue_script( 'zicooneill-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
-	//wp_enqueue_script( 'zicooneill-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+// Load scripts (header.php)
+function header_scripts()
+{
+  if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
+    wp_deregister_script('wp-embed'); // Remove wp-embed
+    // wp_deregister_script('jquery'); // Remove jQuery
+  }
 }
-add_action( 'wp_enqueue_scripts', 'zicooneill_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
-
-/**
- * Custom functions
- */
-
-// Add Bootstrap's IE conditional html5 shiv and respond.js to header
-function conditional_js() {
-
-	global $wp_scripts;
-
-	wp_register_script( 'html5_shiv', 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js', '', '', false );
-	wp_register_script( 'respond_js', 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js', '', '', false );
-
-	$wp_scripts->add_data( 'html5_shiv', 'conditional', 'lt IE 9' );
-	$wp_scripts->add_data( 'respond_js', 'conditional', 'lt IE 9' );
+// Load scripts (footer.php)
+function footer_scripts()
+{
+  if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
+    // global $post;
+    wp_register_script('zicooneill', get_template_directory_uri() . '/script.js', array(), '', true); // Custom scripts
+    // wp_localize_script('zicooneill', 'php_vars', array('title' => $post->post_name)); // Add page title to global variable
+    wp_enqueue_script('zicooneill'); // Enqueue it!
+  }
 }
-add_action( 'wp_enqueue_scripts', 'conditional_js' );
 
+// Load styles
+function styles()
+{
+  wp_register_style('zicooneill', get_template_directory_uri() . '/style.css', array(), '', 'all');
+  wp_enqueue_style('zicooneill'); // Enqueue it!
+}
 
-// Register Custom Navigation Walker
-require_once('wp_bootstrap_navwalker.php');
+// Add page slug to body class, love this - Credit: Starkers Wordpress Theme
+function add_slug_to_body_class($classes)
+{
+  global $post;
+  if (is_home()) {
+    $key = array_search('blog', $classes);
+    if ($key > -1) {
+      unset($classes[$key]);
+    }
+  } elseif (is_page()) {
+    $classes[] = sanitize_html_class($post->post_name);
+  } elseif (is_singular()) {
+    $classes[] = sanitize_html_class($post->post_name);
+  }
+
+  return $classes;
+}
+
+// If Dynamic Sidebar Exists
+if (function_exists('register_sidebar'))
+{
+	// Define Social Area
+  register_sidebar(array(
+    'name' => __('Social', 'zicooneill'),
+    'description' => __('Widgets added here are displayed in the social menu', 'zicooneill'),
+    'id' => 'social_menu',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3>',
+    'after_title' => '</h3>'
+  ));
+}
+
+// Remove wp_head() injected Recent Comment styles
+function my_remove_recent_comments_style()
+{
+  global $wp_widget_factory;
+  remove_action('wp_head', array(
+    $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
+    'recent_comments_style'
+  ));
+}
+
+// Function to remove version numbers
+function sdt_remove_ver_css_js($src)
+{
+  if (strpos( $src, 'ver=' ))
+    $src = remove_query_arg('ver', $src);
+  return $src;
+}
+
+// Remove Admin bar
+function remove_admin_bar()
+{
+  return false;
+}
+
+// Limit excerpt length
+function custom_excerpt_length($length)
+{
+  return 20;
+}
+
+// Order Advanced Custom Fields by sort order
+function compare_order_no($elem1, $elem2)
+{
+  return strcmp($elem1['order_no'], $elem2['order_no']);
+}
+
+// Hide featured image on post page
+function wordpress_hide_feature_image($html, $post_id, $post_image_id)
+{
+  return is_single() ? '' : $html;
+}
+
+/*------------------------------------*\
+  Actions + Filters + ShortCodes
+\*------------------------------------*/
+
+// Add Actions
+add_action('init', 'header_scripts'); // Add Custom Scripts to wp_head()
+add_action('wp_enqueue_scripts', 'footer_scripts'); // Add Custom Scripts to wp_footer()
+add_action('wp_enqueue_scripts', 'styles'); // Add Theme Stylesheet
+add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
+add_action('after_setup_theme', 'shapeSpace_setup'); // Add theme support setup
+
+// Add Support
+add_post_type_support('page', 'excerpt'); // Add excerpt to Pages
+
+// Remove Actions
+remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
+remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
+remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
+remove_action('wp_head', 'wlwmanifest_link'); // Display the link to the Windows Live Writer manifest file
+remove_action('wp_head', 'index_rel_link'); // Index link
+remove_action('wp_head', 'parent_post_rel_link', 10, 0); // Prev link
+remove_action('wp_head', 'start_post_rel_link', 10, 0); // Start link
+remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // Display relational links for the posts adjacent to the current post
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+remove_action('wp_head', 'rel_canonical');
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+remove_action('wp_head', 'print_emoji_detection_script', 7); // Remove emoji scripts
+remove_action('wp_print_styles', 'print_emoji_styles'); // Remove emoji styles
+
+// Add Filters
+add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
+add_filter('show_admin_bar', 'remove_admin_bar'); // Remove Admin bar
+add_filter('nav_menu_item_id', '__return_empty_string'); // Remove id from nav menu items
+add_filter('nav_menu_css_class', 'nav_menu_item_class', 10, 4); // Add class to menu items
+add_filter('nav_menu_link_attributes', 'nav_menu_link_atts', 10, 4); // Add class to menu link
+add_filter('style_loader_src', 'sdt_remove_ver_css_js', 9999); // Remove WP Version From Styles
+add_filter('script_loader_src', 'sdt_remove_ver_css_js', 9999); // Remove WP Version From Scripts
+add_filter('use_default_gallery_style', '__return_false'); // Remove Gallery styles
+add_filter('excerpt_length', 'custom_excerpt_length', 9999); // Limit excerpt length

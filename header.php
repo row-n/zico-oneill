@@ -1,40 +1,36 @@
-<?php
-/**
- * The Header for our theme.
- *
- * Displays all of the <head> section and everything up till <div id="content">
- *
- * @package zicooneill
- */
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <link rel="shortcut icon" href="<?php bloginfo('template_directory');?>/assets/img/favicon.ico"> -->
-<link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="<?php echo esc_url( home_url( '/' ) ); ?>favicon.ico">
-<link rel="apple-touch-icon" sizes="57x57" href="/wp-content/themes/zico-theme/assets/img/icons/favicon-57.png">
-<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/wp-content/themes/zico-theme/assets/img/icons/favicon-57.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/wp-content/themes/zico-theme/assets/img/icons/favicon-72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/wp-content/themes/zico-theme/assets/img/icons/favicon-114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/wp-content/themes/zico-theme/assets/img/icons/favicon-120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/wp-content/themes/zico-theme/assets/img/icons/favicon-144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/wp-content/themes/zico-theme/assets/img/icons/favicon-152.png">
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+  <head>
 
-<link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+    <meta charset="<?php bloginfo('charset'); ?>">
 
-<?php wp_head(); ?>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?php bloginfo('description'); ?>">
 
-</head>
+    <link href="//www.google-analytics.com" rel="dns-prefetch">
+    <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.ico" rel="shortcut icon">
+    <link href="<?php echo get_template_directory_uri(); ?>/img/icons/touch.png" rel="apple-touch-icon-precomposed">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
 
-<body <?php body_class(); ?>>
+    <?php wp_head(); ?>
 
-    <div class="collapse navbar-collapse clearfix" id="navbar-collapse">
-        <?php dynamic_sidebar( 'Menu' ); ?>
-    </div>
+  </head>
+  <body <?php body_class(body); ?>>
 
-    <div class="main-container">
+    <header class="header">
+    	<a class="header__brand" href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a>
+
+    	<button type="button" class="header__trigger" id="trigger">
+    		<span class="sr-only">Toggle navigation</span>
+    		<span class="header__trigger__line header__trigger__line--1"></span>
+        <span class="header__trigger__line header__trigger__line--2"></span>
+        <span class="header__trigger__line header__trigger__line--3"></span>
+    	</button>
+    </header>
+
+    <aside class="aside">
+  		<?php get_sidebar(); ?>
+  	</aside>
+
+    <main class="main" role="main">
