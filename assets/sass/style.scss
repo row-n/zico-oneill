@@ -5,10 +5,6 @@
 @import 'system/functions';
 @import 'system/mixins';
 
-// Bootstrap
-@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
-@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid';
-
 // Generic base styles
 @import 'generic/normalize';
 @import 'generic/keyframes';
@@ -21,8 +17,8 @@
 @import 'layout/content';
 @import 'layout/footer';
 @import 'layout/gallery-list';
+@import 'layout/header';
 @import 'layout/loader';
-@import 'layout/navbar';
 @import 'layout/photospace';
 @import 'layout/sidebar';
 @import 'layout/thumbnails';

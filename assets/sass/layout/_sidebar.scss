@@ -1,7 +1,4 @@
 .aside {
-  @include make-md-column(3);
-  padding-top: 45px;
-
   @media #{$view-md}, #{$view-lg} {
     height: 100%;
     max-width: 300px;

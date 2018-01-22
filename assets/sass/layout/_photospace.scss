@@ -50,14 +50,14 @@
 
   .thumbnail-container {
     .thumbs {
-      @include make-row(20px);
+      // @include make-row(20px);
     }
 
     .thumb-item {
-      @include make-xs-column(12, 20px);
-      @include make-sm-column(6, 20px);
-      @include make-md-column(4, 20px);
-      @include make-lg-column(3, 20px);
+      // @include make-xs-column(12, 20px);
+      // @include make-sm-column(6, 20px);
+      // @include make-md-column(4, 20px);
+      // @include make-lg-column(3, 20px);
     }
   }
 
