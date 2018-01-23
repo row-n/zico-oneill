@@ -1,6 +1,7 @@
 .header {
   @include clearfix();
-  margin: 3em 3em 1em;
+  margin-bottom: 1em;
+  margin-top: 3em;
 
   .header__brand {
     color: $gray-base;

@@ -1,0 +1,36 @@
+.navigation {
+
+  &.navigation--social {
+    bottom: 5em;
+    position: absolute;
+  }
+
+  .navigation__title {
+    color: $white;
+    cursor: default;
+    font-size: $font-size-small;
+    font-weight: 600;
+    margin: 0;
+    text-decoration: none;
+
+    @media #{$view-md}, #{$view-lg} {
+      color: $gray-base;
+    }
+  }
+}
+
+.menu {
+  padding-left: 0;
+
+  .menu__item {
+    list-style: none;
+  }
+
+  .menu__link {
+    color: $gray-light;
+    font-size: $font-size-small;
+    line-height: 180%;
+    outline: 0;
+    text-decoration: none;
+  }
+}

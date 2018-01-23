@@ -1,11 +1,11 @@
-<nav id="menu" class="menu" role="navigation">
-	<?php main_nav(); ?>
+<nav id="primary-navigation" class="navigation navigation--main" role="navigation">
+	<?php dynamic_sidebar('sidebar_menu'); ?>
 </nav>
 
-<div id="secondary" class="social" role="complementary">
+<div id="secondary-navigation" class="navigation navigation--social" role="complementary">
 	<?php dynamic_sidebar('social_menu'); ?>
 </div>
 
-<footer class="footer text-left small hidden-xs hidden-sm">
+<footer class="footer">
 		<p>&copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?></p>
 </footer>

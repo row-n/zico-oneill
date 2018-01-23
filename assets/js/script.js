@@ -1,5 +1,5 @@
 import $ from 'jquery';
 
-import './plugins/menu';
+import './plugins/sidebar';
 
-$('#menu').Menu();
+$('#sidebar').Sidebar();

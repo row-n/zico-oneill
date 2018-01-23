@@ -19,31 +19,6 @@ function shapeSpace_setup()
   add_theme_support('title-tag');
 }
 
-// Blank navigation
-function main_nav()
-{
-  wp_nav_menu(
-    array(
-      'theme_location'  => 'header-menu',
-      'menu'            => 'main',
-      'container'       => false,
-      'container_class' => 'menu-{menu slug}-container',
-      'container_id'    => '',
-      'menu_class'      => 'menu',
-      'menu_id'         => '',
-      'echo'            => true,
-      'fallback_cb'     => 'wp_page_menu',
-      'before'          => '',
-      'after'           => '',
-      'link_before'     => '',
-      'link_after'      => '',
-      'items_wrap'      => '<ul class="menu__list">%3$s</ul>',
-      'depth'           => 0,
-      'walker'          => ''
-    )
-  );
-}
-
 // Add class to menu items
 function nav_menu_item_class($classes, $item, $args, $depth)
 {
@@ -91,17 +66,17 @@ function footer_scripts()
 {
   if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
     // global $post;
-    wp_register_script('zicooneill', get_template_directory_uri() . '/script.js', array(), '', true); // Custom scripts
-    // wp_localize_script('zicooneill', 'php_vars', array('title' => $post->post_name)); // Add page title to global variable
-    wp_enqueue_script('zicooneill'); // Enqueue it!
+    wp_register_script('zico-oneill', get_template_directory_uri() . '/script.js', array(), '', true); // Custom scripts
+    // wp_localize_script('zico-oneill', 'php_vars', array('title' => $post->post_name)); // Add page title to global variable
+    wp_enqueue_script('zico-oneill'); // Enqueue it!
   }
 }
 
 // Load styles
 function styles()
 {
-  wp_register_style('zicooneill', get_template_directory_uri() . '/style.css', array(), '', 'all');
-  wp_enqueue_style('zicooneill'); // Enqueue it!
+  wp_register_style('zico-oneill', get_template_directory_uri() . '/style.css', array(), '', 'all');
+  wp_enqueue_style('zico-oneill'); // Enqueue it!
 }
 
 // Add page slug to body class, love this - Credit: Starkers Wordpress Theme
@@ -125,14 +100,25 @@ function add_slug_to_body_class($classes)
 // If Dynamic Sidebar Exists
 if (function_exists('register_sidebar'))
 {
+  // Define Sidebar Widget Area
+  register_sidebar(array(
+    'name' => __('Sidebar', 'zicooneill'),
+    'description' => __('Widgets added here are displayed in the sidebar', 'zicooneill'),
+    'id' => 'sidebar_menu',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="navigation__title">',
+    'after_title' => '</h3>'
+  ));
+
 	// Define Social Area
   register_sidebar(array(
-    'name' => __('Social', 'zicooneill'),
-    'description' => __('Widgets added here are displayed in the social menu', 'zicooneill'),
+    'name' => __('Social', 'zico-oneill'),
+    'description' => __('Widgets added here are displayed in the social menu', 'zico-oneill'),
     'id' => 'social_menu',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="navigation__title">',
     'after_title' => '</h3>'
   ));
 }

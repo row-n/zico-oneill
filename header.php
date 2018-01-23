@@ -29,7 +29,7 @@
     	</button>
     </header>
 
-    <aside class="aside">
+    <aside class="sidebar" id="sidebar">
   		<?php get_sidebar(); ?>
   	</aside>
 

@@ -1,48 +1,16 @@
-.aside {
-  @media #{$view-md}, #{$view-lg} {
+.sidebar {
+  @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+    background-color: $black;
     height: 100%;
-    max-width: 300px;
-    padding-left: 0;
+    left: -100%;
+    padding: 3em;
     position: fixed;
-    width: 25%;
+    top: 0;
+    transition: left ease-out .2s;
+    width: 100%;
   }
 
-  .widget-area {
-    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
-      display: none;
-    }
-  }
-
-  .widget {
-    margin-bottom: 10px;
-  }
-
-  .menu-menu-container,
-  .menu-sub-menu-container {
-    ul {
-      list-style: none;
-      margin: 0;
-
-      .current_page_item {
-        a {
-          &:after {
-            color: $gray-base;
-            content: '\2022';
-            margin-left: 7px;
-          }
-        }
-      }
-
-      a {
-        color: $gray-light;
-        line-height: 180%;
-        outline: 0;
-
-        &:hover {
-          color: $gray-dark;
-          text-decoration: none;
-        }
-      }
-    }
+  &.sidebar--open {
+    left: 0;
   }
 }

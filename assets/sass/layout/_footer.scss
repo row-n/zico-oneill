@@ -1,45 +1,13 @@
-.footer-menu {
-  bottom: 60px;
-  position: absolute;
-
-  @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
-    display: none;
-  }
-
-  .menu-footer-menu-container {
-    ul {
-      list-style: none;
-      margin: 0;
-
-      a {
-        color: $gray-light;
-        line-height: 180%;
-        outline: 0;
-
-        &:hover {
-          color: $gray-dark;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-}
-
 .footer {
-  bottom: 0;
-  display: block;
-  float: left;
+  bottom: 3em;
   position: absolute;
-
-  @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
-    padding: 0 15px;
-  }
-
-  @media #{$view-md}, #{$view-lg} {
-    position: fixed;
-  }
 
   p {
-    margin: 10px 0;
+    font-size: $font-size-small - 2;
+    margin: 0;
+
+    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+      color: $white;
+    }
   }
 }
