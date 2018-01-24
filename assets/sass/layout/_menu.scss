@@ -13,7 +13,7 @@
     margin: 0;
     text-decoration: none;
 
-    @media #{$view-md}, #{$view-lg} {
+    @media #{$view-desktop} {
       color: $gray-base;
     }
   }

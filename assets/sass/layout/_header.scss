@@ -1,7 +1,17 @@
 .header {
   @include clearfix();
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   margin-top: 3em;
+  width: 100%;
+  z-index: $zindex-header;
+
+  @media #{$view-phone}, #{$view-tablet} {
+    position: relative;
+  }
+
+  @media #{$view-desktop} {
+    position: fixed;
+  }
 
   .header__brand {
     color: $gray-base;
@@ -11,9 +21,10 @@
     outline: 0;
     text-decoration: none;
     text-transform: uppercase;
+    transition: .25s ease-in-out;
 
-    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
-      float: left;
+    .sidebar-active & {
+      color: $white;
     }
   }
 
@@ -31,7 +42,7 @@
     text-indent: -9999px;
     width: 2.25em;
 
-    @media #{$view-md}, #{$view-lg} {
+    @media #{$view-desktop} {
       display: none;
     }
 
@@ -67,7 +78,9 @@
         top: 1.2em;
       }
 
-      .menu-open & {
+      .sidebar-active & {
+        background-color: $white;
+
         &--1 {
           top: .5em;
           transform: rotate(135deg);

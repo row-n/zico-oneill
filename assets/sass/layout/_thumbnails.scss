@@ -21,7 +21,7 @@
     padding: 0;
     transition: all .4s ease;
 
-    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+    @media #{$view-phone}, #{$view-tablet} {
       opacity: 1;
     }
 
@@ -48,7 +48,7 @@
     text-align: left;
     width: 100%;
 
-    @media #{$view-md}, #{$view-lg} {
+    @media #{$view-desktop} {
       display: none;
     }
   }
@@ -57,7 +57,7 @@
     display: block;
     min-width: 100%;
 
-    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+    @media #{$view-phone}, #{$view-tablet} {
       width: 100%;
     }
   }

@@ -1,16 +1,29 @@
 .sidebar {
-  @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+  height: 100%;
+  padding-bottom: 3em;
+  padding-top: 7em;
+  position: fixed;
+  top: 0;
+
+  @media #{$view-phone}, #{$view-tablet} {
     background-color: $black;
-    height: 100%;
     left: -100%;
-    padding: 3em;
-    position: fixed;
-    top: 0;
+    padding-left: 3em;
+    padding-right: 3em;
     transition: left ease-out .2s;
     width: 100%;
+    z-index: $zindex-sidebar;
   }
 
-  &.sidebar--open {
+  @media #{$view-desktop} {
+    width: 25%;
+  }
+
+  .sidebar-active & {
     left: 0;
+
+    @media #{$view-desktop} {
+      left: auto;
+    }
   }
 }

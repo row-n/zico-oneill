@@ -6,7 +6,7 @@
     font-size: $font-size-small - 2;
     margin: 0;
 
-    @media #{$view-xxs}, #{$view-xs}, #{$view-sm} {
+    @media #{$view-phone}, #{$view-tablet} {
       color: $white;
     }
   }
