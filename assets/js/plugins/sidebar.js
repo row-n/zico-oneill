@@ -2,12 +2,12 @@ import $ from 'jquery';
 import plugin from './plugin';
 
 class Sidebar {
-  constructor(element) {
-    const $element = $(element);
+  constructor() {
+    const $body = $('#body');
     const $trigger = $('#trigger');
 
     $trigger.click(() => {
-      $element.toggleClass('sidebar--open');
+      $body.toggleClass('sidebar-active');
     });
   }
 }
