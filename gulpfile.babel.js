@@ -68,7 +68,7 @@ gulp.task('scripts', ['scripts:lint'], () => {
   });
 
   $.fancyLog('-> Building js');
-  b.transform('babelify', { presets: ['es2015'] })
+  b.transform('babelify', { presets: ['env'] })
     .bundle()
     .pipe($.plumber({ errorHandler: onError }))
     .pipe($.vinylSourceStream('script.js'))
