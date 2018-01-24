@@ -102,8 +102,8 @@ if (function_exists('register_sidebar'))
 {
   // Define Sidebar Widget Area
   register_sidebar(array(
-    'name' => __('Sidebar', 'zicooneill'),
-    'description' => __('Widgets added here are displayed in the sidebar', 'zicooneill'),
+    'name' => __('Sidebar', 'zico-oneill'),
+    'description' => __('Widgets added here are displayed in the sidebar', 'zico-oneill'),
     'id' => 'sidebar_menu',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',

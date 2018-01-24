@@ -14,6 +14,9 @@
 				</div>
 
 				<footer class="entry-footer">
+
+					<?php get_template_part('inc/meta'); ?>
+
 					<?php if ( 'post' == get_post_type() ) : ?>
 						<?php
 							$categories_list = get_the_category_list( __( ', ', 'zicooneill' ) );
@@ -43,7 +46,7 @@
 
 		<?php endwhile; ?>
 
-		<?php zicooneill_paging_nav(); ?>
+		<?php get_template_part('inc/pagination'); ?>
 
 	<?php else : ?>
 

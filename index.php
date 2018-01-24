@@ -11,6 +11,8 @@
 
 		<?php endwhile; ?>
 
+		<?php get_template_part('inc/pagination'); ?>
+
 	<?php else : ?>
 
 		<?php get_template_part( 'inc/none' ); ?>

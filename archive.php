@@ -40,9 +40,11 @@
 
 			<?php get_template_part( 'content', get_post_format() ); ?>
 
+			<?php get_template_part('inc/meta'); ?>
+
 		<?php endwhile; ?>
 
-		<?php zicooneill_paging_nav(); ?>
+		<?php get_template_part('inc/pagination'); ?>
 
 	<?php else : ?>
 
