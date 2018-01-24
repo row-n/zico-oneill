@@ -16,7 +16,7 @@
     <?php wp_head(); ?>
 
   </head>
-  <body <?php body_class(body); ?>>
+  <body id="body" <?php body_class('body'); ?>>
 
     <header class="header">
     	<a class="header__brand" href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a>

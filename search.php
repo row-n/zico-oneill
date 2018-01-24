@@ -1,44 +1,54 @@
-<?php
-/**
- * The template for displaying Search Results pages.
- *
- * @package zicooneill
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+	<?php if ( have_posts() ) : ?>
 
-	<aside class="aside">
-		<?php get_sidebar(); ?>
-	</aside>
+		<strong><?php printf( __( 'Search Results for: %s', 'zicooneill' ), '<span>' . get_search_query() . '</span>' ); ?></strong>
 
-	<main id="main" class="site-main" role="main">
-		<?php if ( have_posts() ) : ?>
+		<?php while ( have_posts() ) : the_post(); ?>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'zicooneill' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+			<article id="post-<?php the_ID(); ?>" <?php post_class('page--search'); ?>>
+					<?php the_title( sprintf( '<strong><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></strong>' ); ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+				<div class="entry-summary">
+					<?php the_excerpt(); ?>
+				</div>
 
-				<?php
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'content', 'search' );
-				?>
+				<footer class="entry-footer">
+					<?php if ( 'post' == get_post_type() ) : ?>
+						<?php
+							$categories_list = get_the_category_list( __( ', ', 'zicooneill' ) );
+							if ( $categories_list && zicooneill_categorized_blog() ) :
+						?>
+						<span class="cat-links">
+							<?php printf( __( 'Posted in %1$s', 'zicooneill' ), $categories_list ); ?>
+						</span>
+						<?php endif; ?>
 
-			<?php endwhile; ?>
+						<?php
+							$tags_list = get_the_tag_list( '', __( ', ', 'zicooneill' ) );
+							if ( $tags_list ) :
+						?>
+						<span class="tags-links">
+							<?php printf( __( 'Tagged %1$s', 'zicooneill' ), $tags_list ); ?>
+						</span>
+						<?php endif; ?>
+					<?php endif; ?>
 
-			<?php zicooneill_paging_nav(); ?>
+					<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
+					<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'zicooneill' ), __( '1 Comment', 'zicooneill' ), __( '% Comments', 'zicooneill' ) ); ?></span>
+					<?php endif; ?>
 
-		<?php else : ?>
+				</footer>
+			</article>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+		<?php endwhile; ?>
 
-		<?php endif; ?>
-	</main><!-- #main -->
+		<?php zicooneill_paging_nav(); ?>
+
+	<?php else : ?>
+
+		<?php get_template_part( 'inc/none' ); ?>
+
+	<?php endif; ?>
 
 <?php get_footer(); ?>
