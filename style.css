@@ -385,10 +385,20 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   transition: .25s ease-in-out;
+  width: 10em;
 }
 
 .sidebar-active .header .header__brand {
   color: #fff;
+}
+
+.sidebar-active .header .header__brand>svg {
+  fill: #fff;
+}
+
+.header .header__brand>svg {
+  height: inherit;
+  width: inherit;
 }
 
 .header .header__trigger {

@@ -22,9 +22,19 @@
     text-decoration: none;
     text-transform: uppercase;
     transition: .25s ease-in-out;
+    width: 10em;
 
     .sidebar-active & {
       color: $white;
+
+      > svg {
+        fill: $white;
+      }
+    }
+
+    > svg {
+      height: inherit;
+      width: inherit;
     }
   }
 
