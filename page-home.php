@@ -12,7 +12,7 @@
 					$workpages = get_pages( array( 'child_of' => 136, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
 					if( count( $workpages ) != 0 ) {
 				?>
-				<section class="gallery-list gallery-list--works">
+				<ul class="gallery-list gallery-list--3" id="gallery-works">
 				<?php
 					foreach( $workpages as $works ) {
 						$content = $works->post_content;
@@ -24,25 +24,31 @@
 						foreach( $work_gallery as $work_item ) {
 
 							if ( $work_thumbnail ) { ?>
-								<a href="<?php echo get_page_link( $works->ID ); ?>" class="gallery-list__item">
-									<div class="gallery-list__thumb">
-										<?php echo $work_thumbnail ?>
-									</div>
-									<p class="gallery-list__title"><strong><?php echo $works->post_title; ?></strong></p>
-									<p class="gallery-list__info">images <?php echo count($work_item) ?></p>
-								</a>
+								<li class="gallery-list__item">
+									<figure>
+										<a href="<?php echo get_page_link( $works->ID ); ?>" class="gallery-list__link">
+											<div class="gallery-list__thumb">
+												<?php echo $work_thumbnail ?>
+											</div>
+											<figcaption>
+												<p class="gallery-list__title"><strong><?php echo $works->post_title; ?></strong></p>
+												<p class="gallery-list__info">images <?php echo count($work_item) ?></p>
+											</figcaption>
+										</a>
+									</figure>
+								</li>
 							<?php }
 						}
 					}
 				?>
-				</section>
+			</ul>
 				<?php
 					}
 
 					$projectpages = get_pages( array( 'child_of' => 126, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
 					if( count( $projectpages ) != 0 ) {
 				?>
-				<section class="gallery-list gallery-list--projects">
+				<ul class="gallery-list gallery-list--3" id="gallery-projects">
 				<?php
 					foreach( $projectpages as $projects ) {
 						$content = $projects->post_content;
@@ -54,18 +60,24 @@
 						foreach( $project_gallery as $project_item ) {
 
 							if ( $project_thumbnail ) { ?>
-								<a href="<?php echo get_page_link( $projects->ID ); ?>" class="gallery-list__item">
-									<div class="gallery-list__thumb">
-										<?php echo $project_thumbnail ?>
-									</div>
-									<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
-									<p class="gallery-list__info">images <?php echo count($project_item) ?></p>
-								</a>
+								<li class="gallery-list__item">
+									<figure>
+										<a href="<?php echo get_page_link( $projects->ID ); ?>" class="gallery-list__link">
+											<div class="gallery-list__thumb">
+												<?php echo $project_thumbnail ?>
+											</div>
+											<figcaption>
+												<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
+												<p class="gallery-list__info">images <?php echo count($project_item) ?></p>
+											</figcaption>
+										</a>
+									</figure>
+								</li>
 							<?php }
 						}
 					}
 				?>
-				</section>
+			</ul>
 				<?php
 					}
 				?>
