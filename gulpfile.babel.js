@@ -11,6 +11,8 @@ const $ = require('gulp-load-plugins')({
   scope: ['devDependencies'],
 });
 
+console.log($);
+
 const onError = err => console.log(err); // eslint-disable-line no-console
 
 // Styles
@@ -54,7 +56,7 @@ gulp.task('styles', ['styles:lint'], () => {
 // Scripts
 gulp.task('scripts:lint', () => {
   $.fancyLog('-> Linting js');
-  gulp.src(['./assets/js/**/*.js', '!./node_modules/**/*.js'])
+  gulp.src(['./assets/js/**/*.js', '!./assets/js/vendor/**/*.js', '!./node_modules/**/*.js'])
     .pipe($.plumber({ errorHandler: onError }))
     .pipe($.eslint())
     .pipe($.eslint.format())
@@ -62,13 +64,18 @@ gulp.task('scripts:lint', () => {
 });
 
 gulp.task('scripts', ['scripts:lint'], () => {
+  const options = {
+    fancybox: 'fancybox',
+  };
+
   const b = $.browserify({
     entries: './assets/js/script.js',
     debug: true,
   });
 
   $.fancyLog('-> Building js');
-  b.transform('babelify', { presets: ['env'] })
+  b.require(require.resolve('fancybox'), { entry: true, expose: 'fancybox' })
+    .transform($.commonjsify(options), 'babelify', { presets: ['env'] })
     .bundle()
     .pipe($.plumber({ errorHandler: onError }))
     .pipe($.vinylSourceStream('script.js'))

@@ -6,6 +6,8 @@
 
 if (!defined('ABSPATH')) exit;
 
+require_once 'inc/gallery.php';
+
 /*------------------------------------*\
   Functions
 \*------------------------------------*/
@@ -58,6 +60,8 @@ function header_scripts()
   if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
     wp_deregister_script('wp-embed'); // Remove wp-embed
     // wp_deregister_script('jquery'); // Remove jQuery
+    wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
+    wp_enqueue_script('jquery');
   }
 }
 
@@ -111,7 +115,7 @@ if (function_exists('register_sidebar'))
     'after_title' => '</h3>'
   ));
 
-	// Define Social Area
+  // Define Social Area
   register_sidebar(array(
     'name' => __('Social', 'zico-oneill'),
     'description' => __('Widgets added here are displayed in the social menu', 'zico-oneill'),
