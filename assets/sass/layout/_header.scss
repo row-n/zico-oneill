@@ -1,6 +1,6 @@
 .header {
   @include clearfix();
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   margin-top: 3em;
   width: 100%;
   z-index: $zindex-header;
@@ -14,15 +14,11 @@
   }
 
   .header__brand {
-    color: $gray-base;
-    font-family: 'Raleway', 'AvenirLTStd-Book', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue Medium', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    font-size: $font-size-h3;
-    font-weight: 600;
+    display: block;
+    float: left;
     outline: 0;
-    text-decoration: none;
-    text-transform: uppercase;
     transition: .25s ease-in-out;
-    width: 6em;
+    width: 10em;
 
     .sidebar-active & {
       color: $white;
@@ -50,7 +46,7 @@
     padding: 0;
     position: relative;
     text-indent: -9999px;
-    width: 2.25em;
+    width: 2em;
 
     @media #{$view-desktop} {
       display: none;
