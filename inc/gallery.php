@@ -15,7 +15,7 @@ function portfolio_shortcode( $atts ) {
   $output_buffer ='
   <div id="gallery">
     <div id="thumbnails" class="thumbnail-container" >
-      <ul class="thumnbail-list">';
+      <ul class="thumbs noscript">';
 
       if ( !empty($include) ) {
         $include = preg_replace( '/[^0-9,]+/', '', $include );
@@ -50,10 +50,10 @@ function portfolio_shortcode( $atts ) {
           $image_slug = strtolower(str_replace(' ', '-', $image_slug));
 
           $output_buffer .='
-          <li class="thumbnail-list__item">
-            <a class="thumbnail-list__link" href="' . $img[0] . '" name="' . $image_slug . '" title="' . $image_title . '" >
-              <img src="' . $thumb[0] . '" class="thumbnail-list__image" data-bg-mobile="' . $medium[0] . '" data-bg-desktop="' . $thumb[0] . '" alt="' . $image_alttext . '" title="' . $image_title . '" data-caption="' .  $image_caption . '" data-desc="' .  $image_description . '" />
-                <span class="thumbnail-list__caption">' .  $image_caption . '</span>
+          <li class="thumbs__item">
+            <a class="thumbs__link" href="' . $img[0] . '" name="' . $image_slug . '" title="' . $image_title . '" >
+              <img src="' . $thumb[0] . '" class="thumbs__img" data-bg-mobile="' . $medium[0] . '" data-bg-desktop="' . $thumb[0] . '" alt="' . $image_alttext . '" title="' . $image_title . '" data-caption="' .  $image_caption . '" data-desc="' .  $image_description . '" />
+                <span class="thumbs__caption">' .  $image_caption . '</span>
             </a>
             <div id="view" class="view"><a href="javascript:void(0);">View All</a></div>
           </li>';

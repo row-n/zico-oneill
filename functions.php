@@ -62,6 +62,8 @@ function header_scripts()
     // wp_deregister_script('jquery'); // Remove jQuery
     wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
     wp_enqueue_script('jquery');
+    wp_register_script('galleriffic', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/jquery.galleriffic.min.js", array( 'jquery' ), null);
+    wp_enqueue_script('galleriffic');
   }
 }
 
