@@ -11,8 +11,6 @@ const $ = require('gulp-load-plugins')({
   scope: ['devDependencies'],
 });
 
-console.log($);
-
 const onError = err => console.log(err); // eslint-disable-line no-console
 
 // Styles
@@ -64,18 +62,13 @@ gulp.task('scripts:lint', () => {
 });
 
 gulp.task('scripts', ['scripts:lint'], () => {
-  const options = {
-    fancybox: 'fancybox',
-  };
-
   const b = $.browserify({
     entries: './assets/js/script.js',
     debug: true,
   });
 
   $.fancyLog('-> Building js');
-  b.require(require.resolve('fancybox'), { entry: true, expose: 'fancybox' })
-    .transform($.commonjsify(options), 'babelify', { presets: ['env'] })
+  b.transform('babelify', { presets: ['es2015'] })
     .bundle()
     .pipe($.plumber({ errorHandler: onError }))
     .pipe($.vinylSourceStream('script.js'))

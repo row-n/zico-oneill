@@ -1,0 +1,168 @@
+// .gallery {
+//   position: relative;
+//   text-align: center;
+//
+//   > .active {
+//     animation: fade-in .5s 0s ease-in-out;
+//     display: block !important;
+//   }
+//
+//   .nav-controls {
+//     a {
+//       font-size: 25px;
+//       height: 30px;
+//       line-height: 100%;
+//       width: 30px;
+//
+//       &:hover,
+//       &:focus,
+//       &:active {
+//         text-decoration: none;
+//       }
+//
+//       @media #{$view-desktop} {
+//         &:hover {
+//           // background-color: $tile-bg;
+//         }
+//       }
+//
+//       &.prev {
+//         color: $gray-base;
+//         float: left;
+//         margin-left: 10%;
+//
+//         @media #{$view-sm}, #{$view-desktop} {
+//           margin-left: 25%;
+//         }
+//       }
+//
+//       &.next {
+//         color: $gray-base;
+//         float: right;
+//         margin-right: 10%;
+//
+//         @media #{$view-sm}, #{$view-desktop} {
+//           margin-right: 25%;
+//         }
+//       }
+//     }
+//   }
+// }
+
+.thumbnail-container {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+
+  .thumbs {
+    list-style: none;
+    margin: 0 -.75em;
+    padding: 0;
+  }
+
+  .thumbs__item {
+    float: left;
+    list-style: none;
+    margin-bottom: 1.5em;
+    padding-left: .75em;
+    padding-right: .75em;
+    width: 100%;
+
+    @media #{$view-tablet} {
+      width: 50%;
+    }
+
+    @media #{$view-md} {
+      width: 33.33333%;
+    }
+
+    @media #{$view-lg} {
+      width: 25%;
+    }
+  }
+
+  .thumb {
+    display: block;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    transition: all .4s ease;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .thumbs__img {
+    display: block;
+    width: 100%;
+  }
+
+  .thumbs__caption {
+    color: $gray-light;
+    display: block;
+    font-size: $font-size-small;
+    margin-top: .25em;
+    text-align: left;
+    width: 100%;
+
+    @media #{$view-desktop} {
+      display: none;
+    }
+  }
+}
+
+.slideshow-container {
+  @include clearfix();
+  clear: both;
+  display: none;
+  height: calc(100vh - 9.5em);
+  position: relative;
+  width: 100%;
+
+  .slides {
+    display: table;
+    height: inherit;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+
+  .slides__item {
+    display: table-cell;
+    vertical-align: middle;
+    width: auto;
+
+    @media #{$view-desktop} {
+      height: inherit;
+      letter-spacing: -1px;
+      width: inherit;
+    }
+  }
+
+  .slides__link {
+    outline: 0;
+
+    &:hover,
+    &:active,
+    &:visited {
+      text-decoration: none;
+    }
+  }
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.info {
+  padding-bottom: 3em;
+  padding-top: 1em;
+  text-align: center;
+}

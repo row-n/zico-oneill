@@ -13,7 +13,7 @@ function portfolio_shortcode( $atts ) {
   $orderby = 'none';
 
   $output_buffer ='
-  <div id="gallery">
+  <div id="gallery" class="gallery">
     <div id="thumbnails" class="thumbnail-container" >
       <ul class="thumbs noscript">';
 
@@ -35,10 +35,9 @@ function portfolio_shortcode( $atts ) {
       if ( !empty($attachments) ) {
         foreach ( $attachments as $aid => $attachment ) {
 
-          $img = wp_get_attachment_image_src( $aid , 'gallery_full');
-          $thumb = wp_get_attachment_image_src( $aid , 'gallery_thumbnails');
-          $medium = wp_get_attachment_image_src( $aid , 'gallery_medium');
-          $full = wp_get_attachment_image_src( $aid , 'full');
+          $img = wp_get_attachment_image_src( $aid , $size = 'full');
+          $thumb = wp_get_attachment_image_src( $aid , $size = 'thumbnail');
+          $medium = wp_get_attachment_image_src( $aid , $size = 'medium');
           $_post = get_post($aid);
 
           $image_title = esc_attr($_post->post_title);
@@ -53,9 +52,9 @@ function portfolio_shortcode( $atts ) {
           <li class="thumbs__item">
             <a class="thumbs__link" href="' . $img[0] . '" name="' . $image_slug . '" title="' . $image_title . '" >
               <img src="' . $thumb[0] . '" class="thumbs__img" data-bg-mobile="' . $medium[0] . '" data-bg-desktop="' . $thumb[0] . '" alt="' . $image_alttext . '" title="' . $image_title . '" data-caption="' .  $image_caption . '" data-desc="' .  $image_description . '" />
-                <span class="thumbs__caption">' .  $image_caption . '</span>
+              <span class="thumbs__caption">' .  $image_caption . '</span>
+              <span class="thumbs-caption">' .  $image_caption . '</span>
             </a>
-            <div id="view" class="view"><a href="javascript:void(0);">View All</a></div>
           </li>';
         }
       }
@@ -68,10 +67,13 @@ function portfolio_shortcode( $atts ) {
         <div></div>
       </div>
     </div>
-    <div id="slideshow-container" class="slideshow-container">
+    <div id="slideshow" class="slideshow-container">
       <div id="slides" class="slides"></div>
-      <div id="controls" class="controls"></div>
-      <div id="caption" class="caption"></div>
+      <div id="info" class="info">
+        <div id="controls" class="controls"></div>
+        <div id="caption" class="caption"></div>
+        <a href="javascript:void(0);" id="view" class="view">View All</a>
+      </div>
     </div>
   </div>';
 

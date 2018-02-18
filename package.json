@@ -4,9 +4,7 @@
   "description": "Portfolio site, built with Wordpress for zicooneill.com",
   "main": "gulpfile.babel.js",
   "dependencies": {
-    "fancybox": "^3.0.0",
-    "jquery": "^3.3.1",
-    "vanilla-lazyload": "^10.0.1"
+    "jquery": "^1.12.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -14,7 +12,7 @@
     "babelify": "^8.0.0",
     "browser-sync": "^2.18.13",
     "browserify": "^15.2.0",
-    "commonjsify": "^0.1.4",
+    "browserify-shim": "^3.8.14",
     "del": "^3.0.0",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
@@ -38,9 +36,26 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^2.0.0"
   },
+  "browser": {
+    "galleriffic": "./assets/js/vendor/jquery.galleriffic.js",
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "jQuery",
+    "galleriffic": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
   "scripts": {
-    "start": "node_modules/.bin/gulp",
-    "build": "node_modules/.bin/gulp build",
+    "start": "gulp",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

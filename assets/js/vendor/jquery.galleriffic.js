@@ -141,10 +141,10 @@
 			// @param {Integer} position The index within the gallery where the item shouold be added.
 			addImage: function(listItem, thumbExists, insert, position) {
 				var $li = ( typeof listItem === "string" ) ? $(listItem) : listItem;
-				var $aThumb = $li.find('a.thumb');
+				var $aThumb = $li.find('a.thumbs__link');
 				var slideUrl = $aThumb.attr('href');
 				var title = $aThumb.attr('title');
-				var $caption = $li.find('.caption').remove();
+				var $caption = $li.find('.thumbs__caption').remove();
 				var hash = $aThumb.attr('name');
 
 				// Increment the image counter
@@ -629,15 +629,15 @@
 
 					// Construct new hidden span for the image
 					var newSlide = this.$imageContainer
-						.append('<span class="image-wrapper current"><a class="advance-link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'">&nbsp;</a></span>')
-						.find('span.current').css('opacity', '0');
+						.append('<div class="slides__item current"><a class="slides__link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'"></a></div>')
+						.find('div.current').css('opacity', '0');
 
 				}else{
 
 					//  *** photospace update - replace append with html to stop multiple images in fast clicks ***
 					var newSlide = this.$imageContainer
-						.html('<span class="image-wrapper current"><a class="advance-link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'">&nbsp;</a></span>')
-						.find('span.current').css('opacity', '0');
+						.html('<div class="slides__item current"><a class="slides__link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'"></a></div>')
+						.find('div.current').css('opacity', '0');
 
 				}
 

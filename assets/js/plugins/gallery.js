@@ -1,32 +1,27 @@
-/* global jQuery */
-
 import $ from 'jquery';
 import plugin from './plugin';
+import '../vendor/jquery.history';
 
-// import galleriffic from '../vendor/jquery.galleriffic';
-// import '../vendor/jquery.history';
+require('galleriffic'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
 
 class Gallery {
   constructor(element) {
-    const $element = jQuery(element);
+    const $element = $(element);
     const $thumbnails = $element.find('#thumbnails');
+    const $thumbs = $thumbnails.find('.thumbs__link');
     const $slideshow = $element.find('#slideshow');
+    const $slides = $element.find('#slides');
     const $controls = $element.find('#controls');
+    const $caption = $element.find('#caption');
     const $loader = $element.find('#loader');
     const $viewAll = $element.find('#view');
-
-    const windowHeight = $(window).height() - 135;
     const breakpoint = 768;
-
-    console.log($thumbnails);
-    console.log($('#thumbnails'));
+    const windowHeight = $(window).height() - 135;
 
     $slideshow.hide();
     $thumbnails.hide();
     $controls.hide();
     $loader.show();
-    $('.slideshow-container').css('display', 'block');
-    $('.photospace').css({ height: windowHeight });
 
     const showSlides = () => {
       $thumbnails.fadeOut();
@@ -46,16 +41,28 @@ class Gallery {
       }, 500);
     };
 
+    const resizeImage = () => {
+      // $slideshow.css('height', windowHeight);
+    };
+
+    const pageload = (hash) => {
+      if (hash) {
+        $.galleriffic.gotoImage(hash);
+      } else {
+        $slideshow.gotoIndex(0);
+      }
+    };
+
     $thumbnails.galleriffic({
       delay: 3500,
       numThumbs: 16,
       preloadAhead: '-1',
       enableTopPager: false,
       enableBottomPager: false,
-      imageContainerSel: $slideshow,
-      controlsContainerSel: $controls,
-      // captionContainerSel: $captions,
-      loadingContainerSel: $loader,
+      imageContainerSel: $slides.selector,
+      controlsContainerSel: $controls.selector,
+      captionContainerSel: $caption.selector,
+      loadingContainerSel: $loader.selector,
       renderNavControls: true,
       prevLinkText: '<',
       nextLinkText: '>',
@@ -92,12 +99,27 @@ class Gallery {
 
     });
 
+    // $.historyInit(pageload);
+    $('a[rel=history]').on('click', (event) => {
+      console.log(event);
+      if (event.button !== 0) {
+        return true;
+      }
+
+      let hash = this.href;
+      hash = hash.replace(/^.*#/, '');
+
+      $.historyLoad(hash);
+
+      return false;
+    });
+
     $viewAll.on('click', (event) => {
       event.preventDefault();
       showThumbs();
     });
 
-    $(document).on('click', '.thumb', (event) => {
+    $thumbs.on('click', (event) => {
       event.preventDefault();
       showSlides();
 
@@ -110,6 +132,10 @@ class Gallery {
         event.preventDefault();
         event.stopPropagation();
       }
+    });
+
+    $(window).on('resize orientationchange', () => {
+      resizeImage();
     });
   }
 }
