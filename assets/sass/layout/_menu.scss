@@ -6,15 +6,14 @@
   }
 
   .navigation__title {
-    color: $white;
     cursor: default;
     font-size: $font-size-small;
     font-weight: 600;
     margin: 0;
     text-decoration: none;
 
-    @media #{$view-desktop} {
-      color: $gray-base;
+    @media #{$view-phone}, #{$view-tablet} {
+      color: $white;
     }
   }
 }
@@ -26,11 +25,29 @@
     list-style: none;
   }
 
+  .menu__item--active {
+    .menu__link {
+      &:after {
+        color: $gray-base;
+        content: '\2022';
+        margin-left: .75em;
+
+        @media #{$view-phone}, #{$view-tablet} {
+          color: $white;
+        }
+      }
+    }
+  }
+
   .menu__link {
-    color: $gray-light;
+    color: $gray;
     font-size: $font-size-small;
     line-height: 180%;
     outline: 0;
     text-decoration: none;
+
+    @media #{$view-phone}, #{$view-tablet} {
+      color: $white;
+    }
   }
 }
