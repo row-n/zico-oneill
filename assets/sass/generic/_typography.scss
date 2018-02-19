@@ -84,6 +84,18 @@ h6,
   font-size: $font-size-h6;
 }
 
+// Links
+// -------------------------
+
+a {
+  color: $gray-base;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 
 // Body text
 // -------------------------
