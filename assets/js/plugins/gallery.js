@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import plugin from './plugin';
+import debounce from './debounce';
 
 require('galleriffic'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
 require('history'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
@@ -17,6 +18,7 @@ class Gallery {
     const $viewAll = $element.find('#view');
     const phoneBreakpoint = 768;
     const tabletBreakpoint = 991;
+    const desktopBreakpoint = 1199;
 
     const gallery = $thumbnails.galleriffic({
       delay: 3500,
@@ -72,13 +74,18 @@ class Gallery {
         const $elem = $(ele);
         let src = 0;
 
-        if ($(window).innerWidth() <= tabletBreakpoint) {
-          src = $elem.attr('data-bg-mobile');
-          $elem.attr('src', src);
-        } else {
-          src = $elem.attr('data-bg-desktop');
-          $elem.attr('src', src);
-        }
+        const interchange = debounce(() => {
+          if ($(window).innerWidth() > tabletBreakpoint
+          && $(window).innerWidth() < desktopBreakpoint) {
+            src = $elem.attr('data-bg-desktop');
+            $elem.attr('src', src);
+          } else {
+            src = $elem.attr('data-bg-mobile');
+            $elem.attr('src', src);
+          }
+        }, 250);
+
+        interchange();
       });
     };
 
@@ -110,16 +117,20 @@ class Gallery {
 
     $thumbs.on('click', (event) => {
       event.preventDefault();
-      showSlides();
 
       if ($(window).innerWidth() <= phoneBreakpoint) {
-        event.preventDefault();
         event.stopPropagation();
+      } else {
+        showSlides();
       }
     });
 
     $(window).on('load resize orientationchange', () => {
-      replaceImages();
+      const init = debounce(() => {
+        replaceImages();
+      }, 250);
+
+      init();
     });
 
     $slideshow.show();
