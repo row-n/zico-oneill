@@ -1,0 +1,43 @@
+.sidebar {
+  height: 100%;
+  padding-bottom: 1.5em;
+  padding-top: 7.5em;
+  position: fixed;
+  top: 0;
+
+  @media #{$view-phone} {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  @media #{$view-tablet} {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  @media #{$view-phone}, #{$view-tablet} {
+    background-color: $black;
+    height: 100%;
+    left: -100%;
+    transition: left ease-out .2s;
+    width: 100%;
+    z-index: $zindex-sidebar;
+  }
+
+  @media #{$view-tablet}, #{$view-desktop} {
+    padding-bottom: 3em;
+  }
+
+  @media #{$view-desktop} {
+    width: 25%;
+  }
+
+  .sidebar-active & {
+    left: 0;
+    overflow: hidden;
+
+    @media #{$view-desktop} {
+      left: auto;
+    }
+  }
+}

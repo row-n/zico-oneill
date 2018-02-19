@@ -1,0 +1,24 @@
+.loader {
+  display: block;
+  height: calc(100vh - 9.25em);
+  position: absolute;
+  width: 100%;
+
+  .loader__ball {
+    left: 50%;
+    margin: -30px 0 0 -30px;
+    position: absolute;
+    top: 50%;
+
+    > div {
+      animation: ball-scale 1s 0s ease-in-out infinite;
+      animation-fill-mode: both;
+      background-color: $gray-light;
+      border-radius: 100%;
+      display: inline-block;
+      height: 60px;
+      margin: 2px;
+      width: 60px;
+    }
+  }
+}

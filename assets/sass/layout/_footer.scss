@@ -1,0 +1,13 @@
+.footer {
+  bottom: 3em;
+  position: absolute;
+
+  p {
+    font-size: $font-size-small - 2;
+    margin: 0;
+
+    @media #{$view-phone}, #{$view-tablet} {
+      color: $white;
+    }
+  }
+}

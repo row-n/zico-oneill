@@ -1,22 +1,13 @@
-<?php
-/**
- * The template for displaying all single posts.
- *
- * @package zicooneill
- */
+<?php get_header(); ?>
+	<?php if ( have_posts() ) : ?>
 
-get_header(); ?>
-
-	<aside class="aside">
-		<?php get_sidebar(); ?>
-	</aside>
-
-	<main id="main" class="site-main" role="main">
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php get_template_part( 'content', 'single' ); ?>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('page--content'); ?>>
 
-			<?php zicooneill_post_nav(); ?>
+				<?php the_content(); ?>
+
+			</article>
 
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template
@@ -25,7 +16,12 @@ get_header(); ?>
 				endif;
 			?>
 
-		<?php endwhile; // end of the loop. ?>
-	</main><!-- #main -->
+		<?php endwhile; ?>
+
+	<?php else : ?>
+
+		<?php get_template_part( 'inc/none' ); ?>
+
+	<?php endif; ?>
 
 <?php get_footer(); ?>
