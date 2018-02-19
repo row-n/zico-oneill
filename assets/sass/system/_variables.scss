@@ -22,14 +22,14 @@ $white:                  #fff;
 
 //** Background color for `<body>`.
 $body-bg:               $white;
-$body-color:            $gray-dark;
+$body-color:            $gray-base;
 
 
 //== Typography
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-family-serif:       Georgia, 'Times New Roman', Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -55,7 +55,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)); // ~20px
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    inherit;
-$headings-font-weight:    500;
+$headings-font-weight:    700;
 $headings-line-height:    1.1;
 $headings-color:          inherit;
 
