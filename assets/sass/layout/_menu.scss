@@ -1,5 +1,4 @@
 .navigation {
-
   &.navigation--social {
     bottom: 5em;
     position: absolute;
@@ -9,7 +8,7 @@
     cursor: default;
     font-size: $font-size-small;
     font-weight: 600;
-    margin: 0;
+    margin: 0 0 .75em;
     text-decoration: none;
 
     @media #{$view-phone}, #{$view-tablet} {
@@ -19,6 +18,7 @@
 }
 
 .menu {
+  margin-bottom: 1.5em;
   padding-left: 0;
 
   .menu__item {

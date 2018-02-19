@@ -1,12 +1,16 @@
 .header {
   @include clearfix();
-  margin-bottom: 1em;
-  margin-top: 3em;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
   width: 100%;
   z-index: $zindex-header;
 
   @media #{$view-phone}, #{$view-tablet} {
     position: relative;
+  }
+
+  @media #{$view-tablet}, #{$view-desktop} {
+    margin-top: 3em;
   }
 
   @media #{$view-desktop} {
@@ -25,6 +29,10 @@
 
       > svg {
         fill: $white;
+
+        @media #{$view-desktop} {
+          fill: $gray-base;
+        }
       }
     }
 
@@ -41,10 +49,10 @@
     box-shadow: none;
     cursor: pointer;
     display: block;
-    float: right;
-    height: 1.5em;
+    height: 1.7em;
     padding: 0;
-    position: relative;
+    position: absolute;
+    right: 0;
     text-indent: -9999px;
     width: 2em;
 
@@ -65,40 +73,40 @@
       background-color: $gray-dark;
       display: block;
       height: .125em;
+      left: 0;
       opacity: 1;
       position: absolute;
-      right: 0;
       transform: rotate(0deg);
       transition: .25s ease-in-out;
       width: 100%;
 
       &--1 {
-        top: 0;
+        top: .1em;
       }
 
       &--2 {
-        top: .6em;
+        top: .8em;
       }
 
       &--3 {
-        top: 1.2em;
+        top: 1.5em;
       }
 
       .sidebar-active & {
         background-color: $white;
 
         &--1 {
-          top: .5em;
+          top: .8em;
           transform: rotate(135deg);
         }
 
         &--2 {
+          left: -2.25em;
           opacity: 0;
-          right: -2.25em;
         }
 
         &--3 {
-          top: .5em;
+          top: .8em;
           transform: rotate(-135deg);
         }
       }
