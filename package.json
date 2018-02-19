@@ -38,6 +38,7 @@
   },
   "browser": {
     "galleriffic": "./assets/js/vendor/jquery.galleriffic.js",
+    "history": "./assets/js/vendor/jquery.history.js",
     "jquery": "./node_modules/jquery/dist/jquery.js"
   },
   "browserify": {
@@ -48,6 +49,11 @@
   "browserify-shim": {
     "jquery": "jQuery",
     "galleriffic": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
+    "history": {
       "depends": [
         "jquery:jQuery"
       ]
