@@ -1,0 +1,12 @@
+.main {
+  @include clearfix;
+
+  @media #{$view-phone}, #{$view-tablet} {
+    width: 100%;
+  }
+
+  @media #{$view-desktop} {
+    margin-left: 25%;
+    width: 75%;
+  }
+}

@@ -1,0 +1,27 @@
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  background: $body-bg;
+  color: $body-color;
+  display: block;
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+  font-weight: 400;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+
+  @media #{$view-tablet}, #{$view-desktop} {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  &.sidebar-active {
+    overflow: hidden;
+  }
+}
