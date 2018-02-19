@@ -9,43 +9,7 @@
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class('page--home'); ?>>
 				<?php
-					$workpages = get_pages( array( 'child_of' => 768, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
-					if( count( $workpages ) != 0 ) {
-				?>
-				<ul class="gallery-list gallery-list--3" id="gallery-works">
-				<?php
-					foreach( $workpages as $works ) {
-						$content = $works->post_content;
-						$work_ID = $workss->ID;
-						$work_thumbnail = get_the_post_thumbnail( $work_ID, $size = 'medium' );
-
-						$work_gallery = get_post_galleries_images( $works );
-
-						foreach( $work_gallery as $work_item ) {
-
-							if ( $work_thumbnail ) { ?>
-								<li class="gallery-list__item">
-									<figure>
-										<a href="<?php echo get_page_link( $works->ID ); ?>" class="gallery-list__link">
-											<div class="gallery-list__thumb">
-												<?php echo $work_thumbnail ?>
-											</div>
-											<figcaption>
-												<p class="gallery-list__title"><strong><?php echo $works->post_title; ?></strong></p>
-												<p class="gallery-list__info">images <?php echo count($work_item) ?></p>
-											</figcaption>
-										</a>
-									</figure>
-								</li>
-							<?php }
-						}
-					}
-				?>
-			</ul>
-				<?php
-					}
-
-					$projectpages = get_pages( array( 'child_of' => 763, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
+					$projectpages = get_pages( array( 'child_of' => 155, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
 					if( count( $projectpages ) != 0 ) {
 				?>
 				<ul class="gallery-list gallery-list--3" id="gallery-projects">
@@ -61,17 +25,45 @@
 
 							if ( $project_thumbnail ) { ?>
 								<li class="gallery-list__item">
-									<figure>
-										<a href="<?php echo get_page_link( $projects->ID ); ?>" class="gallery-list__link">
-											<div class="gallery-list__thumb">
-												<?php echo $project_thumbnail ?>
-											</div>
-											<figcaption>
-												<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
-												<p class="gallery-list__info">images <?php echo count($project_item) ?></p>
-											</figcaption>
-										</a>
-									</figure>
+									<a href="<?php echo get_page_link( $projects->ID ); ?>" class="gallery-list__link">
+										<div class="gallery-list__thumb">
+											<?php echo $project_thumbnail ?>
+										</div>
+										<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
+										<p class="gallery-list__info">images <?php echo count($project_item) ?></p>
+									</a>
+								</li>
+							<?php }
+						}
+					}
+				?>
+			</ul>
+				<?php
+					}
+
+					$portfoliopages = get_pages( array( 'child_of' => 284, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
+					if( count( $portfoliopages ) != 0 ) {
+				?>
+				<ul class="gallery-list gallery-list--3" id="gallery-portfolios">
+				<?php
+					foreach( $portfoliopages as $portfolios ) {
+						$content = $portfolios->post_content;
+						$portfolio_ID = $portfolios->ID;
+						$portfolio_thumbnail = get_the_post_thumbnail( $portfolio_ID, $size = 'medium' );
+
+						$portfolio_gallery = get_post_galleries_images( $portfolios );
+
+						foreach( $portfolio_gallery as $portfolio_item ) {
+
+							if ( $portfolio_thumbnail ) { ?>
+								<li class="gallery-list__item">
+									<a href="<?php echo get_page_link( $portfolios->ID ); ?>" class="gallery-list__link">
+										<div class="gallery-list__thumb">
+											<?php echo $portfolio_thumbnail ?>
+										</div>
+										<p class="gallery-list__title"><strong><?php echo $portfolios->post_title; ?></strong></p>
+										<p class="gallery-list__info">images <?php echo count($portfolio_item) ?></p>
+									</a>
 								</li>
 							<?php }
 						}
