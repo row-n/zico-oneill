@@ -6,6 +6,22 @@ function portfolio_shortcode( $atts ) {
   global $post;
   global $gallery_count;
 
+  if ( ! empty( $atts['ids'] ) ) {
+  // 'ids' is explicitly ordered, unless you specify otherwise.
+  if ( empty( $atts['orderby'] ) )
+  $atts['orderby'] = 'post__in';
+  $atts['include'] = $atts['ids'];
+  }
+
+  extract(shortcode_atts(array(
+    'id' => intval($post->ID),
+    'order' => 'ASC',
+    'orderby' => 'menu_order ID',
+    'include' => '',
+    'exclude' => '',
+    'sync_transitions' => 1
+  ), $atts));
+
   $gallery_count += 1;
   $post_id = intval($post->ID) . '_' . $gallery_count;
 
@@ -38,6 +54,7 @@ function portfolio_shortcode( $atts ) {
           $img = wp_get_attachment_image_src( $aid , $size = 'full');
           $thumb = wp_get_attachment_image_src( $aid , $size = 'thumbnail');
           $medium = wp_get_attachment_image_src( $aid , $size = 'medium');
+          $full = wp_get_attachment_image_src( $aid , $size = 'full');
           $_post = get_post($aid);
 
           $image_title = esc_attr($_post->post_title);

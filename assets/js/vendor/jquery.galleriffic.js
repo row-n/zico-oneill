@@ -535,8 +535,8 @@
 				// Update Controls
 				if (this.$controlsContainer) {
 					this.$controlsContainer
-						.find('div.nav-controls a.prev').attr('href', '#'+this.data[this.getPrevIndex(index)].hash).end()
-						.find('div.nav-controls a.next').attr('href', '#'+this.data[this.getNextIndex(index)].hash);
+						.find('div.controls__nav a.prev').attr('href', '#'+this.data[this.getPrevIndex(index)].hash).end()
+						.find('div.controls__nav a.next').attr('href', '#'+this.data[this.getNextIndex(index)].hash);
 				}
 
 				var previousSlide = this.$imageContainer.find('span.current').addClass('previous').removeClass('current');
@@ -922,8 +922,8 @@
 
 			if (this.renderNavControls) {
 				this.$controlsContainer
-					.append('<div class="nav-controls"><a class="prev" rel="history" title="'+this.prevLinkText+'"><span>'+this.prevLinkText+'</span></a><a class="next" rel="history" title="'+this.nextLinkText+'"><span>'+this.nextLinkText+'</span></a></div>')
-					.find('div.nav-controls a')
+					.append('<div class="controls__nav"><a class="prev" rel="history" title="'+this.prevLinkText+'">'+this.prevLinkText+'</a><a class="next" rel="history" title="'+this.nextLinkText+'">'+this.nextLinkText+'</a></div>')
+					.find('div.controls__nav a')
 					.click(function(e) {
 						gallery.clickHandler(e, this);
 					});

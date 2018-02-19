@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import plugin from './plugin';
-import '../vendor/jquery.history';
 
 require('galleriffic'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
+require('history'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
 
 class Gallery {
   constructor(element) {
@@ -15,22 +15,48 @@ class Gallery {
     const $caption = $element.find('#caption');
     const $loader = $element.find('#loader');
     const $viewAll = $element.find('#view');
-    const breakpoint = 768;
-    const windowHeight = $(window).height() - 135;
+    const phoneBreakpoint = 768;
+    const tabletBreakpoint = 991;
 
-    $slideshow.hide();
-    $thumbnails.hide();
-    $controls.hide();
-    $loader.show();
+    const gallery = $thumbnails.galleriffic({
+      delay: 3500,
+      numThumbs: 16,
+      preloadAhead: '-1',
+      enableTopPager: false,
+      enableBottomPager: false,
+      imageContainerSel: $slides.selector,
+      controlsContainerSel: $controls.selector,
+      captionContainerSel: $caption.selector,
+      loadingContainerSel: $loader.selector,
+      renderSSControls: false,
+      renderNavControls: true,
+      prevLinkText: '‹',
+      nextLinkText: '›',
+      enableHistory: false,
+      autoStart: false,
+      enableKeyboardNavigation: true,
+      syncTransitions: false,
+      defaultTransitionDuration: 1000,
+
+      onTransitionIn(slide, caption, isSync) {
+        const duration = this.getDefaultTransitionDuration(isSync);
+        slide.fadeTo(duration, 1);
+        caption.fadeTo(duration, 1);
+        $controls.fadeTo(duration, 1);
+      },
+      onTransitionOut(slide, caption, isSync, callback) {
+        slide.fadeTo(this.getDefaultTransitionDuration(isSync), 0, callback);
+        caption.fadeTo(this.getDefaultTransitionDuration(isSync), 0);
+      },
+      onPageTransitionIn(isSync) {
+        this.fadeTo(this.getDefaultTransitionDuration(isSync), 1);
+      },
+    });
 
     const showSlides = () => {
       $thumbnails.fadeOut();
       setTimeout(() => {
         $slideshow.fadeIn();
-
-        if (typeof $.fn.resizeImage === 'function') {
-          $slideshow.resizeImage();
-        }
       }, 500);
     };
 
@@ -41,78 +67,41 @@ class Gallery {
       }, 500);
     };
 
-    const resizeImage = () => {
-      // $slideshow.css('height', windowHeight);
+    const replaceImages = () => {
+      $thumbs.find('img').each((index, ele) => {
+        const $elem = $(ele);
+        let src = 0;
+
+        if ($(window).innerWidth() <= tabletBreakpoint) {
+          src = $elem.attr('data-bg-mobile');
+          $elem.attr('src', src);
+        } else {
+          src = $elem.attr('data-bg-desktop');
+          $elem.attr('src', src);
+        }
+      });
     };
 
-    const pageload = (hash) => {
-      if (hash) {
-        $.galleriffic.gotoImage(hash);
-      } else {
-        $slideshow.gotoIndex(0);
-      }
-    };
-
-    $thumbnails.galleriffic({
-      delay: 3500,
-      numThumbs: 16,
-      preloadAhead: '-1',
-      enableTopPager: false,
-      enableBottomPager: false,
-      imageContainerSel: $slides.selector,
-      controlsContainerSel: $controls.selector,
-      captionContainerSel: $caption.selector,
-      loadingContainerSel: $loader.selector,
-      renderNavControls: true,
-      prevLinkText: '<',
-      nextLinkText: '>',
-      enableHistory: true,
-      autoStart: false,
-      enableKeyboardNavigation: true,
-      syncTransitions: false,
-      defaultTransitionDuration: 300,
-
-      // onTransitionOut: (slide, caption, isSync, callback) => {
-      //   slide.fadeTo(slide.getDefaultTransitionDuration(isSync), 0.0, callback);
-      //   caption.fadeTo(slide.getDefaultTransitionDuration(isSync), 0.0);
-      // },
-      // onTransitionIn: (slide, caption, isSync) => {
-      //   console.log(slide);
-      //   const duration = slide.getDefaultTransitionDuration(isSync);
-      //   slide.fadeTo(duration, 1.0);
-      //   $('.controls').fadeTo(duration, 1.0);
-      //
-      //   // Position the caption at the bottom of the image and set its opacity
-      //   caption.fadeTo(duration, 1.0);
-      //
-      //   if (typeof $.fn.resizeImage === 'function') {
-      //     $slideshow.resizeImage();
-      //   }
-      // },
-      // onPageTransitionOut: (event) => {
-      //   console.log(event);
-      //   event.target.hide();
-      // },
-      // onPageTransitionIn: (event) => {
-      //   event.target.fadeTo('fast', 1.0);
-      // },
-
-    });
-
-    // $.historyInit(pageload);
-    $('a[rel=history]').on('click', (event) => {
-      console.log(event);
-      if (event.button !== 0) {
-        return true;
-      }
-
-      let hash = this.href;
-      hash = hash.replace(/^.*#/, '');
-
-      $.historyLoad(hash);
-
-      return false;
-    });
+    // const pageload = (hash) => {
+    //   if (hash) {
+    //     $.galleriffic.gotoImage(hash);
+    //   } else {
+    //     gallery.gotoIndex(0);
+    //   }
+    // };
+    //
+    // $('a[rel=history]').on('click', (event) => {
+    //   if (event.button !== 0) {
+    //     return true;
+    //   }
+    //
+    //   let hash = event.currentTarget.href;
+    //   hash = hash.replace(/^.*#/, '');
+    //
+    //   $.historyLoad(hash);
+    //
+    //   return false;
+    // });
 
     $viewAll.on('click', (event) => {
       event.preventDefault();
@@ -123,20 +112,20 @@ class Gallery {
       event.preventDefault();
       showSlides();
 
-      $(event.target).parent()
-        .addClass('selected')
-        .siblings()
-        .removeClass('selected');
-
-      if ($(window).innerWidth() <= breakpoint) {
+      if ($(window).innerWidth() <= phoneBreakpoint) {
         event.preventDefault();
         event.stopPropagation();
       }
     });
 
-    $(window).on('resize orientationchange', () => {
-      resizeImage();
+    $(window).on('load resize orientationchange', () => {
+      replaceImages();
     });
+
+    $slideshow.show();
+    $thumbnails.hide();
+
+    // $.historyInit(pageload());
   }
 }
 
