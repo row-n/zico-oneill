@@ -30,7 +30,7 @@
 											<?php echo $project_thumbnail ?>
 										</div>
 										<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
-										<p class="gallery-list__info">images <?php echo count($project_item) ?></p>
+										<p class="gallery-list__info">Series of <?php echo count($project_item) ?></p>
 									</a>
 								</li>
 							<?php }
@@ -41,28 +41,28 @@
 				<?php
 					}
 
-					$portfoliopages = get_pages( array( 'child_of' => 284, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
-					if( count( $portfoliopages ) != 0 ) {
+					$workpages = get_pages( array( 'child_of' => 284, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
+					if( count( $workpages ) != 0 ) {
 				?>
-				<ul class="gallery-list gallery-list--3" id="gallery-portfolios">
+				<ul class="gallery-list gallery-list--3" id="gallery-works">
 				<?php
-					foreach( $portfoliopages as $portfolios ) {
-						$content = $portfolios->post_content;
-						$portfolio_ID = $portfolios->ID;
-						$portfolio_thumbnail = get_the_post_thumbnail( $portfolio_ID, $size = 'medium' );
+					foreach( $workpages as $works ) {
+						$content = $works->post_content;
+						$work_ID = $works->ID;
+						$work_thumbnail = get_the_post_thumbnail( $work_ID, $size = 'medium' );
 
-						$portfolio_gallery = get_post_galleries_images( $portfolios );
+						$work_gallery = get_post_galleries_images( $works );
 
-						foreach( $portfolio_gallery as $portfolio_item ) {
+						foreach( $work_gallery as $work_item ) {
 
-							if ( $portfolio_thumbnail ) { ?>
+							if ( $work_thumbnail ) { ?>
 								<li class="gallery-list__item">
-									<a href="<?php echo get_page_link( $portfolios->ID ); ?>" class="gallery-list__link">
+									<a href="<?php echo get_page_link( $works->ID ); ?>" class="gallery-list__link">
 										<div class="gallery-list__thumb">
-											<?php echo $portfolio_thumbnail ?>
+											<?php echo $work_thumbnail ?>
 										</div>
-										<p class="gallery-list__title"><strong><?php echo $portfolios->post_title; ?></strong></p>
-										<p class="gallery-list__info">images <?php echo count($portfolio_item) ?></p>
+										<p class="gallery-list__title"><strong><?php echo $works->post_title; ?></strong></p>
+										<p class="gallery-list__info">Series of <?php echo count($work_item) ?></p>
 									</a>
 								</li>
 							<?php }

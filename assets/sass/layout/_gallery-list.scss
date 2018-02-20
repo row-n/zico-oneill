@@ -67,7 +67,9 @@
   }
 
   .gallery-list__info {
-    font-size: $font-size-x-small;
+    color: $gray;
+    font-size: $font-size-small;
+    line-height: 1.5;
     margin-bottom: 0;
   }
 }
