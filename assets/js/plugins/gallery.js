@@ -22,7 +22,7 @@ class Gallery {
 
     const gallery = $thumbnails.galleriffic({
       delay: 3500,
-      numThumbs: 16,
+      numThumbs: 60,
       preloadAhead: '-1',
       enableTopPager: false,
       enableBottomPager: false,

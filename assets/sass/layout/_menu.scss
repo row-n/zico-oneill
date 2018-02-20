@@ -49,5 +49,10 @@
     @media #{$view-phone}, #{$view-tablet} {
       color: $white;
     }
+
+    .menu-ancillary-container & {
+      font-size: $font-size-small;
+      font-weight: 600;
+    }
   }
 }
