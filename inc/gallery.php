@@ -68,7 +68,7 @@ function portfolio_shortcode( $atts ) {
           $output_buffer .='
           <li class="thumbs__item">
             <a class="thumbs__link" href="' . $img[0] . '" name="' . $image_slug . '" title="' . $image_title . '" >
-              <img src="' . $thumb[0] . '" class="thumbs__img" data-bg-mobile="' . $medium[0] . '" data-bg-desktop="' . $thumb[0] . '" alt="' . $image_alttext . '" title="' . $image_title . '" data-caption="' .  $image_caption . '" data-desc="' .  $image_description . '" />
+              <img src="' . $medium[0] . '" class="thumbs__img" alt="' . $image_alttext . '" title="' . $image_title . '" />
               <span class="thumbs__caption">' .  $image_caption . '</span>
               <span class="thumbs-caption">' .  $image_caption . '</span>
             </a>

@@ -1,6 +1,6 @@
 import $ from 'jquery';
+import Masonry from 'masonry-layout';
 import plugin from './plugin';
-import debounce from './debounce';
 
 require('galleriffic'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
 require('history'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
@@ -16,13 +16,11 @@ class Gallery {
     const $caption = $element.find('#caption');
     const $loader = $element.find('#loader');
     const $viewAll = $element.find('#view');
-    const phoneBreakpoint = 768;
     const tabletBreakpoint = 991;
-    const desktopBreakpoint = 1199;
 
     const gallery = $thumbnails.galleriffic({
       delay: 3500,
-      numThumbs: 16,
+      numThumbs: 60,
       preloadAhead: '-1',
       enableTopPager: false,
       enableBottomPager: false,
@@ -69,23 +67,9 @@ class Gallery {
       }, 500);
     };
 
-    const replaceImages = () => {
-      $thumbs.find('img').each((index, ele) => {
-        const $elem = $(ele);
-        let src = 0;
-
-        const interchange = debounce(() => {
-          if ($(window).innerWidth() > tabletBreakpoint
-          && $(window).innerWidth() < desktopBreakpoint) {
-            src = $elem.attr('data-bg-desktop');
-            $elem.attr('src', src);
-          } else {
-            src = $elem.attr('data-bg-mobile');
-            $elem.attr('src', src);
-          }
-        }, 250);
-
-        interchange();
+    const msnry = () => {
+      new Masonry($thumbnails.selector, { // eslint-disable-line no-new
+        itemSelector: '.thumbs__item',
       });
     };
 
@@ -118,23 +102,21 @@ class Gallery {
     $thumbs.on('click', (event) => {
       event.preventDefault();
 
-      if ($(window).innerWidth() <= phoneBreakpoint) {
+      if ($(window).innerWidth() <= tabletBreakpoint) {
         event.stopPropagation();
       } else {
+        msnry();
         showSlides();
       }
     });
 
-    $(window).on('load resize orientationchange', () => {
-      const init = debounce(() => {
-        replaceImages();
-      }, 250);
-
-      init();
-    });
-
+    msnry();
     $slideshow.show();
     $thumbnails.hide();
+
+    if ($(window).innerWidth() <= tabletBreakpoint) {
+      $loader.hide();
+    }
 
     // $.historyInit(pageload());
   }

@@ -1,10 +1,11 @@
 {
   "name": "zicooneill",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Portfolio site, built with Wordpress for zicooneill.com",
   "main": "gulpfile.babel.js",
   "dependencies": {
-    "jquery": "^1.12.4"
+    "jquery": "^1.12.4",
+    "masonry-layout": "^4.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
