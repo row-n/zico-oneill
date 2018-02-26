@@ -60,8 +60,6 @@ function header_scripts()
   if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
     wp_deregister_script('wp-embed'); // Remove wp-embed
     wp_deregister_script('jquery'); // Remove jQuery
-    // wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
-    // wp_enqueue_script('jquery');
   }
 }
 
@@ -70,7 +68,7 @@ function footer_scripts()
 {
   if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
     // global $post;
-    wp_register_script('zico-oneill', get_template_directory_uri() . '/script.js', array(), '2.0.2', true); // Custom scripts
+    wp_register_script('zico-oneill', get_template_directory_uri() . '/script.js', array(), '2.0.3', true); // Custom scripts
     // wp_localize_script('zico-oneill', 'php_vars', array('title' => $post->post_name)); // Add page title to global variable
     wp_enqueue_script('zico-oneill'); // Enqueue it!
   }
@@ -79,7 +77,7 @@ function footer_scripts()
 // Load styles
 function styles()
 {
-  wp_register_style('zico-oneill', get_template_directory_uri() . '/style.css', array(), '2.0.2', 'all');
+  wp_register_style('zico-oneill', get_template_directory_uri() . '/style.css', array(), '2.0.3', 'all');
   wp_enqueue_style('zico-oneill'); // Enqueue it!
 }
 

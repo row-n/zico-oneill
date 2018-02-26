@@ -1,0 +1,45 @@
+.controls {
+  a {
+    align-items: center;
+    border-radius: .15em;
+    display: flex;
+    font-family: $font-family-monospace;
+    font-size: $font-size-x-large;
+    height: 1.5em;
+    justify-content: center;
+    text-decoration: none;
+    width: 1.5em;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+    @media #{$view-desktop} {
+      &:hover {
+        background-color: $gray-lighter;
+      }
+    }
+
+    &.prev {
+      color: $gray-base;
+      float: left;
+      margin-left: 10%;
+
+      @media #{$view-sm}, #{$view-desktop} {
+        margin-left: 25%;
+      }
+    }
+
+    &.next {
+      color: $gray-base;
+      float: right;
+      margin-right: 10%;
+
+      @media #{$view-sm}, #{$view-desktop} {
+        margin-right: 25%;
+      }
+    }
+  }
+}

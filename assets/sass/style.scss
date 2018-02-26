@@ -9,13 +9,11 @@
 @import 'generic/normalize';
 @import 'generic/keyframes';
 @import 'generic/font';
-// @import 'generic/icons';
 @import 'generic/typography';
 @import 'generic/base';
 
 // Site specific
 @import 'layout/footer';
-@import 'layout/gallery';
 @import 'layout/gallery-list';
 @import 'layout/header';
 @import 'layout/loader';
@@ -23,3 +21,9 @@
 @import 'layout/menu';
 @import 'layout/page';
 @import 'layout/sidebar';
+@import 'layout/slideshow';
+@import 'layout/slideshow-caption';
+@import 'layout/slideshow-controls';
+@import 'layout/slideshow-info';
+@import 'layout/slideshow-view';
+@import 'layout/thumbnails';
