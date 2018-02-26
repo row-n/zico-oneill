@@ -45,12 +45,10 @@ class Gallery {
       onTransitionOut(slide, caption, isSync, callback) {
         slide.fadeTo(this.getDefaultTransitionDuration(isSync), 0.0, callback);
         caption.fadeTo(this.getDefaultTransitionDuration(isSync), 0.0, callback);
-        // $info.fadeTo(this.getDefaultTransitionDuration(isSync), 0.0, callback);
       },
       onTransitionIn(slide, caption, isSync) {
         slide.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
         caption.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
-        // $info.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
       },
       onPageTransitionOut() {
         this.hide();
