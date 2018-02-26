@@ -1,6 +1,6 @@
 {
   "name": "zicooneill",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Portfolio site, built with Wordpress for zicooneill.com",
   "main": "gulpfile.babel.js",
   "dependencies": {
