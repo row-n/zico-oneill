@@ -39,15 +39,17 @@ class Gallery {
       enableHistory: false,
       autoStart: false,
       enableKeyboardNavigation: true,
-      syncTransitions: true,
+      syncTransitions: false,
       defaultTransitionDuration: 1000,
-      onTransitionOut(slide, caption, isSync, callback) {
-        slide.fadeTo(this.getDefaultTransitionDuration(isSync), 0.0, callback);
-        caption.fadeTo(this.getDefaultTransitionDuration(isSync), 0.0, callback);
-      },
-      onTransitionIn(slide, caption, isSync) {
-        slide.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
-        caption.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
+      onSlideChange(prevIndex, nextIndex) {
+      // 'this' refers to the gallery, which is an extension of $('#thumbs')
+        this.find('ul.thumbs')
+          .children()
+          .eq(prevIndex)
+          .fadeTo('fast', 1.0)
+          .end()
+          .eq(nextIndex)
+          .fadeTo('fast', 1.0);
       },
       onPageTransitionOut() {
         this.hide();
