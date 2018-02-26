@@ -1,0 +1,47 @@
+.slideshow-container {
+  @include clearfix();
+  clear: both;
+  display: none;
+  height: calc(100vh - 9.25em);
+  position: relative;
+  width: 100%;
+
+  @media #{$view-phone}, #{$view-tablet} {
+    display: none !important; // sass-lint:disable-line no-important
+  }
+
+  .slides {
+    display: table;
+    height: inherit;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+
+  .image-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    width: auto;
+
+    @media #{$view-desktop} {
+      height: inherit;
+      letter-spacing: -1px;
+      width: inherit;
+    }
+  }
+
+  .advance-link {
+    outline: 0;
+
+    &:hover,
+    &:active,
+    &:visited {
+      text-decoration: none;
+    }
+  }
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}

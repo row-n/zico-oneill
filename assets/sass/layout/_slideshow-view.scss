@@ -1,0 +1,11 @@
+.view {
+  color: $gray-base;
+  font-size: $font-size-small;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
