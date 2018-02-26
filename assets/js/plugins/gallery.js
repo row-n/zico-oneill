@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import Masonry from 'masonry-layout';
 import plugin from './plugin';
 
 require('galleriffic'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
@@ -18,38 +17,45 @@ class Gallery {
     const $viewAll = $element.find('#view');
     const tabletBreakpoint = 991;
 
-    const gallery = $thumbnails.galleriffic({
-      delay: 3500,
+    $thumbnails.galleriffic({
+      delay: 2500,
       numThumbs: 60,
-      preloadAhead: '-1',
+      preloadAhead: -1,
       enableTopPager: false,
       enableBottomPager: false,
+      maxPagesToShow: 1,
       imageContainerSel: $slides.selector,
       controlsContainerSel: $controls.selector,
       captionContainerSel: $caption.selector,
       loadingContainerSel: $loader.selector,
       renderSSControls: false,
       renderNavControls: true,
-      prevLinkText: '‹',
-      nextLinkText: '›',
+      playLinkText: 'Play Slideshow',
+      pauseLinkText: 'Pause Slideshow',
+      prevLinkText: '&lsaquo;',
+      nextLinkText: '&rsaquo;',
+      prevPageLinkText: '&lsaquo;',
+      nextPageLinkText: '&rsaquo;',
       enableHistory: false,
       autoStart: false,
       enableKeyboardNavigation: true,
       syncTransitions: false,
       defaultTransitionDuration: 1000,
-
-      onTransitionIn(slide, caption, isSync) {
-        const duration = this.getDefaultTransitionDuration(isSync);
-        slide.fadeTo(duration, 1);
-        caption.fadeTo(duration, 1);
-        $controls.fadeTo(duration, 1);
+      onSlideChange(prevIndex, nextIndex) {
+      // 'this' refers to the gallery, which is an extension of $('#thumbs')
+        this.find('ul.thumbs')
+          .children()
+          .eq(prevIndex)
+          .fadeTo('fast', 1.0)
+          .end()
+          .eq(nextIndex)
+          .fadeTo('fast', 1.0);
       },
-      onTransitionOut(slide, caption, isSync, callback) {
-        slide.fadeTo(this.getDefaultTransitionDuration(isSync), 0, callback);
-        caption.fadeTo(this.getDefaultTransitionDuration(isSync), 0);
+      onPageTransitionOut() {
+        this.hide();
       },
-      onPageTransitionIn(isSync) {
-        this.fadeTo(this.getDefaultTransitionDuration(isSync), 1);
+      onPageTransitionIn() {
+        this.show();
       },
     });
 
@@ -65,12 +71,6 @@ class Gallery {
       setTimeout(() => {
         $thumbnails.fadeIn();
       }, 500);
-    };
-
-    const msnry = () => {
-      new Masonry($thumbnails.selector, { // eslint-disable-line no-new
-        itemSelector: '.thumbs__item',
-      });
     };
 
     // const pageload = (hash) => {
@@ -105,18 +105,16 @@ class Gallery {
       if ($(window).innerWidth() <= tabletBreakpoint) {
         event.stopPropagation();
       } else {
-        msnry();
         showSlides();
       }
     });
 
-    msnry();
-    $slideshow.show();
-    $thumbnails.hide();
-
     if ($(window).innerWidth() <= tabletBreakpoint) {
       $loader.hide();
     }
+
+    $thumbnails.hide();
+    $slideshow.show();
 
     // $.historyInit(pageload());
   }
