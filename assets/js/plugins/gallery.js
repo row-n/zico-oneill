@@ -11,7 +11,6 @@ class Gallery {
     const $thumbs = $thumbnails.find('.thumbs__link');
     const $slideshow = $element.find('#slideshow');
     const $slides = $element.find('#slides');
-    const $info = $element.find('#info');
     const $controls = $element.find('#controls');
     const $caption = $element.find('#caption');
     const $loader = $element.find('#loader');
