@@ -12,15 +12,15 @@
 					$projectpages = get_pages( array( 'child_of' => 155, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
 					if( count( $projectpages ) != 0 ) {
 				?>
-				<ul class="gallery-list gallery-list--3" id="gallery-projects">
+				<ul class="gallery-list" id="gallery-projects">
 				<?php
 					foreach( $projectpages as $projects ) {
 						$content = $projects->post_content;
 						$project_ID = $projects->ID;
 						$project_thumbnail = get_the_post_thumbnail( $project_ID, $size = 'medium' );
 
-						$gallery = get_post_gallery( $projects, false );
-						$attachments = $gallery_attachment_ids = explode( ',', $gallery['ids'] );
+						$project_gallery = get_post_gallery( $projects, false );
+						$project_attachments = explode( ',', $project_gallery['ids'] );
 
 						if ( $project_thumbnail ) { ?>
 							<li class="gallery-list__item">
@@ -29,7 +29,7 @@
 										<?php echo $project_thumbnail ?>
 									</div>
 									<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
-									<p class="gallery-list__info">Series of <?php echo count( $attachments ); ?></p>
+									<p class="gallery-list__info">Series of <?php echo count( $project_attachments ); ?></p>
 								</a>
 							</li>
 						<?php }
@@ -42,15 +42,15 @@
 					$workpages = get_pages( array( 'child_of' => 284, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
 					if( count( $workpages ) != 0 ) {
 				?>
-				<ul class="gallery-list gallery-list--3" id="gallery-works">
+				<ul class="gallery-list" id="gallery-works">
 				<?php
 					foreach( $workpages as $works ) {
 						$content = $works->post_content;
 						$work_ID = $works->ID;
 						$work_thumbnail = get_the_post_thumbnail( $work_ID, $size = 'medium' );
 
-						$gallery = get_post_gallery( $projects, false );
-						$attachments = $gallery_attachment_ids = explode( ',', $gallery['ids'] );
+						$work_gallery = get_post_gallery( $works, false );
+						$work_attachments = explode( ',', $work_gallery['ids'] );
 
 						if ( $work_thumbnail ) { ?>
 							<li class="gallery-list__item">
@@ -59,7 +59,7 @@
 										<?php echo $work_thumbnail ?>
 									</div>
 									<p class="gallery-list__title"><strong><?php echo $works->post_title; ?></strong></p>
-									<p class="gallery-list__info">Series of <?php echo count( $attachments ); ?></p>
+									<p class="gallery-list__info">Series of <?php echo count( $work_attachments ); ?></p>
 								</a>
 							</li>
 						<?php }
