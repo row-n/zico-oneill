@@ -65,18 +65,10 @@ function portfolio_shortcode( $atts ) {
           $image_slug = preg_replace('/[^A-Za-z0-9 ]/', '', $image_alttext);
           $image_slug = strtolower(str_replace(' ', '-', $image_slug));
 
-          $width = $medium[1];
-          $height = $medium[2];
-          if ($width > $height) {
-              $orientation = 'landscape';
-          } else {
-              $orientation = 'portrait';
-          }
-
           $output_buffer .='
-          <li class="thumbs__item thumbs__item--' . $orientation . '">
+          <li class="thumbs__item">
             <a class="thumbs__link" href="' . $img[0] . '" name="' . $image_slug . '" title="' . $image_title . '" >
-              <div style="background-image: url(' . $medium[0] . ');" class="thumbs__img" title="' . $image_title . '"></div>
+              <img src="' . $medium[0] . '" class="thumbs__img" alt="' . $image_alttext . '" title="' . $image_title . '" />
               <span class="thumbs__caption">' .  $image_caption . '</span>
               <span class="thumbs-caption">' .  $image_caption . '</span>
             </a>

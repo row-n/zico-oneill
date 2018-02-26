@@ -19,20 +19,22 @@
 						$project_ID = $projects->ID;
 						$project_thumbnail = get_the_post_thumbnail( $project_ID, $size = 'medium' );
 
-						$gallery = get_post_gallery( $projects, false );
-						$attachments = $gallery_attachment_ids = explode( ',', $gallery['ids'] );
+						$project_gallery = get_post_galleries_images( $projects );
 
-						if ( $project_thumbnail ) { ?>
-							<li class="gallery-list__item">
-								<a href="<?php echo get_page_link( $projects->ID ); ?>" class="gallery-list__link">
-									<div class="gallery-list__thumb">
-										<?php echo $project_thumbnail ?>
-									</div>
-									<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
-									<p class="gallery-list__info">Series of <?php echo count( $attachments ); ?></p>
-								</a>
-							</li>
-						<?php }
+						foreach( $project_gallery as $project_item ) {
+
+							if ( $project_thumbnail ) { ?>
+								<li class="gallery-list__item">
+									<a href="<?php echo get_page_link( $projects->ID ); ?>" class="gallery-list__link">
+										<div class="gallery-list__thumb">
+											<?php echo $project_thumbnail ?>
+										</div>
+										<p class="gallery-list__title"><strong><?php echo $projects->post_title; ?></strong></p>
+										<p class="gallery-list__info">Series of <?php echo count($project_item) ?></p>
+									</a>
+								</li>
+							<?php }
+						}
 					}
 				?>
 			</ul>
@@ -49,20 +51,22 @@
 						$work_ID = $works->ID;
 						$work_thumbnail = get_the_post_thumbnail( $work_ID, $size = 'medium' );
 
-						$gallery = get_post_gallery( $projects, false );
-						$attachments = $gallery_attachment_ids = explode( ',', $gallery['ids'] );
+						$work_gallery = get_post_galleries_images( $works );
 
-						if ( $work_thumbnail ) { ?>
-							<li class="gallery-list__item">
-								<a href="<?php echo get_page_link( $works->ID ); ?>" class="gallery-list__link">
-									<div class="gallery-list__thumb">
-										<?php echo $work_thumbnail ?>
-									</div>
-									<p class="gallery-list__title"><strong><?php echo $works->post_title; ?></strong></p>
-									<p class="gallery-list__info">Series of <?php echo count( $attachments ); ?></p>
-								</a>
-							</li>
-						<?php }
+						foreach( $work_gallery as $work_item ) {
+
+							if ( $work_thumbnail ) { ?>
+								<li class="gallery-list__item">
+									<a href="<?php echo get_page_link( $works->ID ); ?>" class="gallery-list__link">
+										<div class="gallery-list__thumb">
+											<?php echo $work_thumbnail ?>
+										</div>
+										<p class="gallery-list__title"><strong><?php echo $works->post_title; ?></strong></p>
+										<p class="gallery-list__info">Series of <?php echo count($work_item) ?></p>
+									</a>
+								</li>
+							<?php }
+						}
 					}
 				?>
 			</ul>
