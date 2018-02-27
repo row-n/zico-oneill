@@ -2,7 +2,6 @@ import $ from 'jquery';
 import plugin from './plugin';
 
 require('galleriffic'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
-require('history'); // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
 
 class Gallery {
   constructor(element) {
@@ -42,7 +41,6 @@ class Gallery {
       syncTransitions: false,
       defaultTransitionDuration: 1000,
       onSlideChange(prevIndex, nextIndex) {
-      // 'this' refers to the gallery, which is an extension of $('#thumbs')
         this.find('ul.thumbs')
           .children()
           .eq(prevIndex)
@@ -73,27 +71,6 @@ class Gallery {
       }, 500);
     };
 
-    // const pageload = (hash) => {
-    //   if (hash) {
-    //     $.galleriffic.gotoImage(hash);
-    //   } else {
-    //     gallery.gotoIndex(0);
-    //   }
-    // };
-    //
-    // $('a[rel=history]').on('click', (event) => {
-    //   if (event.button !== 0) {
-    //     return true;
-    //   }
-    //
-    //   let hash = event.currentTarget.href;
-    //   hash = hash.replace(/^.*#/, '');
-    //
-    //   $.historyLoad(hash);
-    //
-    //   return false;
-    // });
-
     $viewAll.on('click', (event) => {
       event.preventDefault();
       showThumbs();
@@ -115,8 +92,6 @@ class Gallery {
 
     $thumbnails.hide();
     $slideshow.show();
-
-    // $.historyInit(pageload());
   }
 }
 
