@@ -4,6 +4,13 @@
     position: absolute;
   }
 
+  > * {
+    @media #{$view-xs} and (orientation: landscape) {
+      float: left;
+      width: 50%;
+    }
+  }
+
   .navigation__title {
     cursor: default;
     font-size: $font-size-small;

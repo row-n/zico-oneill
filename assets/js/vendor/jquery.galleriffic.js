@@ -629,14 +629,14 @@
 
 					// Construct new hidden span for the image
 					var newSlide = this.$imageContainer
-						.append('<span class="image-wrapper current"><a class="advance-link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'">&nbsp;</a></span>')
+						.append('<span class="image-wrapper current"><a class="advance-link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'"></a></span>')
 						.find('span.current').css('opacity', '0');
 
 				}else{
 
 					//  *** photospace update - replace append with html to stop multiple images in fast clicks ***
 					var newSlide = this.$imageContainer
-						.html('<span class="image-wrapper current"><a class="advance-link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'">&nbsp;</a></span>')
+						.html('<span class="image-wrapper current"><a class="advance-link" rel="history" href="#'+this.data[nextIndex].hash+'" title="'+imageData.title+'"></a></span>')
 						.find('span.current').css('opacity', '0');
 
 				}

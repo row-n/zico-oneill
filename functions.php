@@ -68,7 +68,7 @@ function footer_scripts()
 {
   if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
     // global $post;
-    wp_register_script('zico-oneill', get_template_directory_uri() . '/script.js', array(), '2.0.4', true); // Custom scripts
+    wp_register_script('zico-oneill', get_template_directory_uri() . '/script.js', array(), '2.0.5', true); // Custom scripts
     // wp_localize_script('zico-oneill', 'php_vars', array('title' => $post->post_name)); // Add page title to global variable
     wp_enqueue_script('zico-oneill'); // Enqueue it!
   }
@@ -77,7 +77,7 @@ function footer_scripts()
 // Load styles
 function styles()
 {
-  wp_register_style('zico-oneill', get_template_directory_uri() . '/style.css', array(), '2.0.4', 'all');
+  wp_register_style('zico-oneill', get_template_directory_uri() . '/style.css', array(), '2.0.5', 'all');
   wp_enqueue_style('zico-oneill'); // Enqueue it!
 }
 
@@ -202,7 +202,5 @@ add_filter('show_admin_bar', 'remove_admin_bar'); // Remove Admin bar
 add_filter('nav_menu_item_id', '__return_empty_string'); // Remove id from nav menu items
 add_filter('nav_menu_css_class', 'nav_menu_item_class', 10, 4); // Add class to menu items
 add_filter('nav_menu_link_attributes', 'nav_menu_link_atts', 10, 4); // Add class to menu link
-add_filter('style_loader_src', 'sdt_remove_ver_css_js', 9999); // Remove WP Version From Styles
-add_filter('script_loader_src', 'sdt_remove_ver_css_js', 9999); // Remove WP Version From Scripts
 add_filter('use_default_gallery_style', '__return_false'); // Remove Gallery styles
 add_filter('excerpt_length', 'custom_excerpt_length', 9999); // Limit excerpt length
