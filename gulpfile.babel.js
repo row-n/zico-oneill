@@ -47,7 +47,7 @@ gulp.task('styles', ['styles:lint'], () => {
       minifyFontValues: true,
       minifySelectors: true,
     })))
-    .pipe($.if(isProduction, $.sourcemaps.write()))
+    .pipe($.if(isProduction, $.sourcemaps.write('./')))
     .pipe($.if(isProduction, gulp.dest('./')));
 });
 
@@ -76,7 +76,7 @@ gulp.task('scripts', ['scripts:lint'], () => {
     .pipe(gulp.dest('./'))
     .pipe($.if(isProduction, $.sourcemaps.init({ loadMaps: true })))
     .pipe($.if(isProduction, $.uglify()))
-    .pipe($.if(isProduction, $.sourcemaps.write()))
+    .pipe($.if(isProduction, $.sourcemaps.write('./')))
     .pipe($.if(isProduction, gulp.dest('./')));
 });
 
