@@ -1,8 +1,8 @@
 .loader {
   display: block;
   height: calc(100vh - 9.25em);
-  position: absolute;
-  width: 100%;
+  max-width: 100%;
+  position: relative;
 
   .loader__ball {
     left: 50%;
