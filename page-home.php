@@ -9,7 +9,7 @@
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class('page--home'); ?>>
 				<?php
-					$workpages = get_pages( array( 'child_of' => 284, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
+					$workpages = get_pages( array( 'child_of' => 284, 'sort_column' => 'menu_order', 'sort_order' => 'DESC' ) );
 					if( count( $workpages ) != 0 ) {
 				?>
 				<ul class="gallery-list" id="gallery-works">
@@ -39,7 +39,7 @@
 				<?php
 					}
 
-					$projectpages = get_pages( array( 'child_of' => 155, 'sort_column' => 'menu_order', 'sort_order' => 'ASC' ) );
+					$projectpages = get_pages( array( 'child_of' => 155, 'sort_column' => 'menu_order', 'sort_order' => 'DESC' ) );
 					if( count( $projectpages ) != 0 ) {
 				?>
 				<ul class="gallery-list" id="gallery-projects">
